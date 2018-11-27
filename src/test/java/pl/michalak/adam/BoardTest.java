@@ -34,6 +34,13 @@ public class BoardTest {
         assertEquals(board.getSymbol(index), Symbol.EMPTY);
     }
 
+    @Test(dataProvider = "slotsOnBoard")
+    public void countBoardSideSize(int index){
+        //given
+        String whyItFailed = "One or more of the slots is not empty.";
+        //then
+        assertEquals(board.getSideSize(), 3);
+    }
 
     @Test(dataProvider = "slotsOnBoard")
     public void addXSymbolAtAllSlots(int index) {

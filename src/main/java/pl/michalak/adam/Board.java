@@ -28,5 +28,13 @@ class Board {
         return this.piecesOnBoard.get(index);
     }
 
+    int getNumberOfSlots(){
+        return this.piecesOnBoard.size();
+    }
+
+    int getSideSize(){
+        return (int)Math.sqrt(getNumberOfSlots());
+
+    }
 
 }
