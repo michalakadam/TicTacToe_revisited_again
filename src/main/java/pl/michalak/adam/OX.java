@@ -1,6 +1,6 @@
 package pl.michalak.adam;
 /**
- * Główna klasa programu
+ * Main class of the program.
  *
  * @author Adam Michalak
  */
