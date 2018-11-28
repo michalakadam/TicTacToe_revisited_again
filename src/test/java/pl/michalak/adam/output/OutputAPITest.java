@@ -1,6 +1,5 @@
 package pl.michalak.adam.output;
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -13,16 +12,16 @@ import java.util.ResourceBundle;
 import static org.testng.Assert.assertEquals;
 
 
-public class DisplayAPITest {
-    DisplayAPI displayAPI;
-    ByteArrayOutputStream byteArrayOutputStream;
+public class OutputAPITest {
+    private OutputAPI displayAPI;
+    private ByteArrayOutputStream byteArrayOutputStream;
     PrintStream printStream;
 
     @BeforeMethod
     public void setUp(){
         byteArrayOutputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(byteArrayOutputStream);
-        displayAPI = new DisplayAPI(printStream);
+        displayAPI = new OutputAPI(printStream);
     }
 
     @Test

@@ -1,10 +1,10 @@
-package pl.michalak.adam;
+package pl.michalak.adam.components;
 
 import java.util.ArrayList;
 import java.util.List;
 
 class Board {
-    private List<Symbol> piecesOnBoard;
+    private final List<Symbol> piecesOnBoard;
 
     Board(int boardSize){
         this.piecesOnBoard = new ArrayList<>();

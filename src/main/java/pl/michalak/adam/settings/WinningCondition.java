@@ -1,7 +1,7 @@
-package pl.michalak.adam;
+package pl.michalak.adam.settings;
 
-public class WinningCondition {
-    int winningCondition;
+class WinningCondition {
+    private final int winningCondition;
 
     WinningCondition(int winningCondition){
         this.winningCondition = winningCondition;
