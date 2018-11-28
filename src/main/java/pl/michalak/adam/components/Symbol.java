@@ -1,5 +1,5 @@
-package pl.michalak.adam;
+package pl.michalak.adam.components;
 
 public enum Symbol {
-    EMPTY, X, O;
+    EMPTY, X, O
 }

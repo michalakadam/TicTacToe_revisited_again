@@ -1,72 +1,71 @@
-package pl.michalak.adam;
+package pl.michalak.adam.assessment;
 
-import pl.michalak.adam.components.Board;
+import pl.michalak.adam.components.ComponentsAPI;
 import pl.michalak.adam.components.Symbol;
-import pl.michalak.adam.settings.WinningCondition;
 
 class WinChecker {
-    Board board;
-    WinningCondition winningCondition;
+    private final ComponentsAPI componentsAPI;
+    private final int winningCondition;
 
-    WinChecker(Board board, WinningCondition winningCondition){
-        this.board = board;
+    WinChecker(ComponentsAPI componentsAPI, int winningCondition){
+        this.componentsAPI = componentsAPI;
         this.winningCondition = winningCondition;
     }
 
 
     boolean checkWin(int index, Symbol symbol) {
-        //index%board.getSideSize() guarantees that column is checked from the beginning.
-        if(countConsecutiveSymbolsInColumn(index%board.getSideSize(), symbol) == this.winningCondition.getWinningCondition()) return true;
-        //index - index%board.getSideSize() guarantees that row is checked from the beginning.
-        else if(countConsecutiveSymbolsInRow(index - index%board.getSideSize(), symbol) == this.winningCondition.getWinningCondition()) return true;
-        //index%(board.getSideSize()+1) guarantees that first diagonal is checked from the beginning.
-        else if(countConsecutiveSymbolsInFirstDiagonal(index%(board.getSideSize()+1), symbol) == this.winningCondition.getWinningCondition()) return true;
-        //index%(board.getSideSize()-1) guarantees that first diagonal is checked from the beginning.
-        //If diagonal is main diagonal therefore index%(board.getSideSize()-1) == 0 and checking will begin at index = 0 which does not belong to this diagonal.
-        else if(countConsecutiveSymbolsInSecondDiagonal((index%(board.getSideSize()-1)==0) ? board.getSideSize()-1 : index%(board.getSideSize()-1), symbol) == this.winningCondition.getWinningCondition()) return true;
+        //index%componentsAPI.getBoardSideSize() guarantees that column is checked from the beginning.
+        if(countConsecutiveSymbolsInColumn(index%componentsAPI.getBoardSideSize(), symbol) == this.winningCondition) return true;
+        //index - index%componentsAPI.getBoardSideSize() guarantees that row is checked from the beginning.
+        else if(countConsecutiveSymbolsInRow(index - index%componentsAPI.getBoardSideSize(), symbol) == this.winningCondition) return true;
+        //index%(componentsAPI.getBoardSideSize()+1) guarantees that first diagonal is checked from the beginning.
+        else if(countConsecutiveSymbolsInFirstDiagonal(index%(componentsAPI.getBoardSideSize()+1), symbol) == this.winningCondition) return true;
+        //index%(componentsAPI.getBoardSideSize()-1) guarantees that first diagonal is checked from the beginning.
+        //If diagonal is main diagonal therefore index%(componentsAPI.getBoardSideSize()-1) == 0 and checking will begin at index = 0 which does not belong to this diagonal.
+        else if(countConsecutiveSymbolsInSecondDiagonal((index%(componentsAPI.getBoardSideSize()-1)==0) ? componentsAPI.getBoardSideSize()-1 : index%(componentsAPI.getBoardSideSize()-1), symbol) == this.winningCondition) return true;
         return false;
     }
 
     private int countConsecutiveSymbolsInColumn(int index, Symbol symbol) {
-        //index + board.getSideSize() is a location of next slot in the column, eg. for first columne of 3x3 board 0, 3, 6
-        if(index + board.getSideSize() >= board.getNumberOfSlots())
+        //index + componentsAPI.getBoardSideSize() is a location of next slot in the column, eg. for first columne of 3x3 componentsAPI 0, 3, 6
+        if(index + componentsAPI.getBoardSideSize() >= componentsAPI.getNumberOfSlotsOnBoard())
             return recursionBaseCaseResult(index, symbol);
-        if(board.getSymbol(index).equals(symbol))
-            return 1 + countConsecutiveSymbolsInColumn(index+board.getSideSize(), symbol);
-        return countConsecutiveSymbolsInColumn(index+board.getSideSize(), symbol);
+        if(componentsAPI.getSymbolFromSlot(index).equals(symbol))
+            return 1 + countConsecutiveSymbolsInColumn(index+componentsAPI.getBoardSideSize(), symbol);
+        return countConsecutiveSymbolsInColumn(index+componentsAPI.getBoardSideSize(), symbol);
     }
 
     private int countConsecutiveSymbolsInRow(int index, Symbol symbol) {
-        //index+1 is a location of next slot in the row, eg. for first row of 3x3 board 0, 1, 2
-        if((index+1)%board.getSideSize() == 0)
+        //index+1 is a location of next slot in the row, eg. for first row of 3x3 componentsAPI 0, 1, 2
+        if((index+1)%componentsAPI.getBoardSideSize() == 0)
             return recursionBaseCaseResult(index, symbol);
-        if(board.getSymbol(index).equals(symbol))
+        if(componentsAPI.getSymbolFromSlot(index).equals(symbol))
             return 1 + countConsecutiveSymbolsInRow(index+1, symbol);
         return countConsecutiveSymbolsInRow(index+1, symbol);
     }
 
-    //first diagonal is one going from up-left side of the board to bottom-right
+    //first diagonal is one going from up-left side of the componentsAPI to bottom-right
     private int countConsecutiveSymbolsInFirstDiagonal(int index, Symbol symbol) {
-        //index+board.getSideSize()+1 is a location of next slot in the diagonal, eg. for 3x3 board 0, 4, 8
-        if(index+board.getSideSize()+1 >= board.getNumberOfSlots())
+        //index+componentsAPI.getBoardSideSize()+1 is a location of next slot in the diagonal, eg. for 3x3 componentsAPI 0, 4, 8
+        if(index+componentsAPI.getBoardSideSize()+1 >= componentsAPI.getNumberOfSlotsOnBoard())
             return recursionBaseCaseResult(index, symbol);
-        if(board.getSymbol(index).equals(symbol))
-            return 1 + countConsecutiveSymbolsInFirstDiagonal(index+board.getSideSize()+1, symbol);
-        return countConsecutiveSymbolsInFirstDiagonal(index+board.getSideSize()+1, symbol);
+        if(componentsAPI.getSymbolFromSlot(index).equals(symbol))
+            return 1 + countConsecutiveSymbolsInFirstDiagonal(index+componentsAPI.getBoardSideSize()+1, symbol);
+        return countConsecutiveSymbolsInFirstDiagonal(index+componentsAPI.getBoardSideSize()+1, symbol);
     }
 
-    //second diagonal is one going from up-right side of the board to bottom-left
+    //second diagonal is one going from up-right side of the componentsAPI to bottom-left
     private int countConsecutiveSymbolsInSecondDiagonal(int index, Symbol symbol) {
-        //index+board.getSideSize()-1 is a location of next slot in the diagonal, eg. for 3x3 board 2, 4, 6
-        if(index+board.getSideSize()-1 >= board.getNumberOfSlots())
+        //index+componentsAPI.getBoardSideSize()-1 is a location of next slot in the diagonal, eg. for 3x3 componentsAPI 2, 4, 6
+        if(index+componentsAPI.getBoardSideSize()-1 >= componentsAPI.getNumberOfSlotsOnBoard())
             return recursionBaseCaseResult(index, symbol);
-        if(board.getSymbol(index).equals(symbol))
-            return 1 + countConsecutiveSymbolsInSecondDiagonal(index+board.getSideSize()-1, symbol);
-        return countConsecutiveSymbolsInSecondDiagonal(index+board.getSideSize()-1, symbol);
+        if(componentsAPI.getSymbolFromSlot(index).equals(symbol))
+            return 1 + countConsecutiveSymbolsInSecondDiagonal(index+componentsAPI.getBoardSideSize()-1, symbol);
+        return countConsecutiveSymbolsInSecondDiagonal(index+componentsAPI.getBoardSideSize()-1, symbol);
     }
 
     private int recursionBaseCaseResult(int index, Symbol symbol){
-        if (board.getSymbol(index).equals(symbol))
+        if (componentsAPI.getSymbolFromSlot(index).equals(symbol))
             return 1;
         return 0;
     }

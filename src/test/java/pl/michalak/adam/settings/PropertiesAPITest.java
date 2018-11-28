@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 public class PropertiesAPITest {
-    PropertiesAPI propertiesAPI;
+    private PropertiesAPI propertiesAPI;
 
     @BeforeMethod
     public void setUp(){

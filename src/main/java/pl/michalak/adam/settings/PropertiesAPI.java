@@ -1,7 +1,7 @@
 package pl.michalak.adam.settings;
 
-public class PropertiesAPI {
-    WinningCondition winningCondition;
+class PropertiesAPI {
+    private final WinningCondition winningCondition;
 
     public PropertiesAPI(int winningCondition){
         this.winningCondition = new WinningCondition(winningCondition);

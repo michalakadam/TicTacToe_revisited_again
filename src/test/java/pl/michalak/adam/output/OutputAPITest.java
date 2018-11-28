@@ -1,6 +1,5 @@
 package pl.michalak.adam.output;
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -14,8 +13,8 @@ import static org.testng.Assert.assertEquals;
 
 
 public class OutputAPITest {
-    OutputAPI displayAPI;
-    ByteArrayOutputStream byteArrayOutputStream;
+    private OutputAPI displayAPI;
+    private ByteArrayOutputStream byteArrayOutputStream;
     PrintStream printStream;
 
     @BeforeMethod

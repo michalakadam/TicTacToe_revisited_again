@@ -10,8 +10,8 @@ import java.io.UnsupportedEncodingException;
 import static org.testng.Assert.*;
 
 public class DisplayTest {
-    ByteArrayOutputStream byteArrayOutputStream;
-    Display display;
+    private ByteArrayOutputStream byteArrayOutputStream;
+    private Display display;
 
     @BeforeMethod
     public void setup(){

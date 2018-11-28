@@ -1,4 +1,4 @@
-package pl.michalak.adam;
+package pl.michalak.adam.components;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -6,12 +6,9 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
-
 
 public class BoardTest {
-    Board board;
+    private Board board;
 
     @BeforeMethod
     public void setUp(){
@@ -31,7 +28,7 @@ public class BoardTest {
         //given
         String whyItFailed = "One or more of the slots is not empty.";
         //then
-        assertEquals(board.getSymbol(index), Symbol.EMPTY);
+        Assert.assertEquals(board.getSymbol(index), Symbol.EMPTY);
     }
 
     @Test(dataProvider = "slotsOnBoard")

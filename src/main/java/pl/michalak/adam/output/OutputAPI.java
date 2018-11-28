@@ -4,7 +4,7 @@ import java.io.PrintStream;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class OutputAPI {
+class OutputAPI {
     private final Display display;
     private final ResourceBundle languageBundle;
 
