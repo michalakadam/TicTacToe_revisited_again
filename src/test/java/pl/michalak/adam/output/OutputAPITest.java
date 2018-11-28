@@ -20,14 +20,14 @@ public class OutputAPITest {
     @BeforeMethod
     public void setUp(){
         byteArrayOutputStream = new ByteArrayOutputStream();
-        PrintStream printStream = new PrintStream(byteArrayOutputStream);
+        printStream = new PrintStream(byteArrayOutputStream);
         displayAPI = new OutputAPI(printStream);
     }
 
     @Test
     public void shouldPrintWelcomeMessageInPolish(){
         //given
-        String whyItFailed = "wasn't implemented: shouldPrintWelcomeMessageInPolish";
+        String whyItFailed = "ResourceBundle not working or language incorrectly chosen";
         Locale.setDefault(new Locale("pl"));
         ResourceBundle languageBundle = ResourceBundle.getBundle("Language");
         String welcomeMessage = "welcome";
@@ -35,7 +35,7 @@ public class OutputAPITest {
         displayAPI.print(welcomeMessage);
         //then
         try {
-            assertEquals(byteArrayOutputStream.toString("UTF-8"), languageBundle.getString("welcome"));
+            assertEquals(byteArrayOutputStream.toString("UTF-8"), languageBundle.getString("welcome"), whyItFailed);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
