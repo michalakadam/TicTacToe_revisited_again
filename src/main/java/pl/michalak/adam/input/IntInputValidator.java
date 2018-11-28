@@ -2,6 +2,7 @@ package pl.michalak.adam.input;
 
 import pl.michalak.adam.output.OutputAPI;
 
+import java.text.MessageFormat;
 import java.util.InputMismatchException;
 
 class IntInputValidator {
@@ -31,7 +32,7 @@ class IntInputValidator {
         if (inputIsInRange(input, min, max)) {
             return input;
         }
-        outputAPI.printFromResourceBundle(String.format("numberOutOfRange", min, max));
+        outputAPI.printFromResourceBundleWithFormatting("numberOutOfRange", min);
         return getIntInputFromPlayer(message, min, max);
     }
 }

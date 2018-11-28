@@ -2,6 +2,8 @@ package pl.michalak.adam.input;
 
 import pl.michalak.adam.output.OutputAPI;
 
+import java.text.MessageFormat;
+
 class StringInputValidator {
     private final OutputAPI outputAPI;
     private final InputReader inputReader;
@@ -22,7 +24,7 @@ class StringInputValidator {
         String answer = inputReader.getString();
         if(checkStringInput(option1, answer) || checkStringInput(option2, answer))
             return answer;
-        outputAPI.printFromResourceBundle(String.format("insertCorrectAnswer", option1, option2));
+        outputAPI.printFromResourceBundleWithFormatting("insertCorrectAnswer", option1, option2);
         return getStringInput(message, option1, option2);
     }
 }
