@@ -20,7 +20,7 @@ public class StringInputValidatorTest {
         outputAPI = new OutputAPI(new PrintStream(System.out));
     }
     @Test(expectedExceptions = NoSuchElementException.class)
-    public void inputReaderToSpacjaNieDziała() {
+    public void inputIsWhiteSpaceShouldNotWork() {
         //given
         String data = " ";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
@@ -34,7 +34,7 @@ public class StringInputValidatorTest {
         assertEquals(stringInputValidator.getStringInput(message, option1, option2), " ");
     }
     @Test(expectedExceptions = NoSuchElementException.class)
-    public void inputReaderToEnterNieDziała() {
+    public void inputIsWhiteEnterShouldNotWork() {
         //given
         String data = "";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
@@ -48,13 +48,13 @@ public class StringInputValidatorTest {
         assertEquals(stringInputValidator.getStringInput(message, option1, option2), "");
     }
     @DataProvider
-    public static Object[][] znaki(){
+    public static Object[][] characters(){
         return new Object[][]{
                 {"X", "O"}, {"123", "Adam"}, {"$#$#", "^$FDDF"}
         };
     }
-    @Test(dataProvider = "znaki")
-    public void inputReaderSięZgadza(String word1, String word2){
+    @Test(dataProvider = "characters")
+    public void inputShouldBeCorrect(String word1, String word2){
         //given
         System.setIn(new ByteArrayInputStream(word1.getBytes()));
         inputReader = new InputReader(System.in);
@@ -67,7 +67,7 @@ public class StringInputValidatorTest {
         assertEquals(stringInputValidator.getStringInput(message, option1, option2), word1);
     }
     @Test
-    public void inputReaderMałąLiterąSięZgadza(){
+    public void inputBeginningWithSmallLetterIsCorrect(){
         //given
         String data = "x";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
@@ -81,7 +81,7 @@ public class StringInputValidatorTest {
         assertEquals(stringInputValidator.getStringInput(message, option1, option2), "x");
     }
     @Test
-    public void inputReaderWielkąLiterąSięZgadza(){
+    public void inputBeginningWithCapitalLetterIsCorrect(){
         //given
         String data = "X";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
@@ -95,5 +95,19 @@ public class StringInputValidatorTest {
         assertEquals(stringInputValidator.getStringInput(message, option1, option2), "X");
     }
 
+    @Test(expectedExceptions = NoSuchElementException.class)
+    public void inputThatDoesNotMatchOptionShouldInformAboutIt(){
+        //given
+        String data = "WrongData";
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
+        inputReader = new InputReader(System.in);
+        StringInputValidator stringInputValidator = new StringInputValidator(outputAPI, inputReader);
+        //when
+        String message = "testMessage";
+        String option1 = "x";
+        String option2 = "o";
+        //then
+        assertEquals(stringInputValidator.getStringInput(message, option1, option2), "This line is never reached anyway");
+    }
 
 }

@@ -7,6 +7,7 @@ import pl.michalak.adam.output.OutputAPI;
 
 import java.io.ByteArrayInputStream;
 import java.io.PrintStream;
+import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 
 import static org.testng.Assert.assertEquals;
@@ -108,5 +109,19 @@ public class IntInputValidatorTest {
         int max = 4;
         //then
         assertEquals(intInputValidator.getIntInputFromPlayer(message, min, max), -2);
+    }
+    @Test(expectedExceptions = NoSuchElementException.class)
+    public void inputNotIntThrowsException(){
+        //given
+        String data = "SomeWordsHereNotInts";
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
+        inputReader = new InputReader(System.in);
+        intInputValidator = new IntInputValidator(outputAPI, inputReader);
+        //when
+        String message = "testMessage";
+        int min = -4;
+        int max = 4;
+        //then
+        assertEquals(intInputValidator.getIntInputFromPlayer(message, min, max), 4);
     }
 }

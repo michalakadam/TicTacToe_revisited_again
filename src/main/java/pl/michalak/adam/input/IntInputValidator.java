@@ -32,7 +32,7 @@ class IntInputValidator {
         if (inputIsInRange(input, min, max)) {
             return input;
         }
-        outputAPI.printFromResourceBundleWithFormatting("numberOutOfRange", min);
+        outputAPI.printFromResourceBundleWithFormatting("numberOutOfRange", min, max);
         return getIntInputFromPlayer(message, min, max);
     }
 }
