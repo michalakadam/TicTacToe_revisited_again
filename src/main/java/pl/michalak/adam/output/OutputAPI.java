@@ -1,21 +1,26 @@
 package pl.michalak.adam.output;
 
 import java.io.PrintStream;
-import java.util.Locale;
+import java.text.MessageFormat;
 import java.util.ResourceBundle;
 
-class OutputAPI {
+public class OutputAPI {
     private final Display display;
     private final ResourceBundle languageBundle;
 
     public OutputAPI(PrintStream printStream) {
         this.display = new Display(printStream);
-        Locale.setDefault(new Locale("pl"));// TODO: 28.11.18 MOVE THIS LINE TO SETTINGS PACKAGE
         this.languageBundle = ResourceBundle.getBundle("Language");
 
     }
 
-    public void print(String message) {
+    public void print(String message) { display.print(message);}
+
+    public void printFromResourceBundle(String message) {
         display.print(languageBundle.getString(message));
+    }
+
+    public void printFromResourceBundleWithFormatting(String message, Object... params) {
+        display.print(MessageFormat.format(languageBundle.getString(message), params));
     }
 }

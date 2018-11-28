@@ -11,24 +11,24 @@ class ResourceBundleTest {
     @Test
     public void resourceBundleShouldOfferWelcomeInEnglish(){
         //given
-        String whyItFailed = "wasn't implemented: shouldPrintWelcomeInEnglish";
+        String whyItFailed = "ResourceBundle not working or language incorrectly chosen";
         Locale.setDefault(new Locale("en"));
         ResourceBundle languageBundle = ResourceBundle.getBundle("Language");
         //when
         String message = languageBundle.getString("welcome");
         //then
-        assertEquals(message, "Welcome in TicTacToe!");
+        assertEquals(message, "Welcome in TicTacToe!", whyItFailed);
     }
 
     @Test
     public void resourceBundleShouldOfferWelcomeInPolish(){
         //given
-        String whyItFailed = "wasn't implemented: shouldPrintWelcomeInEnglish";
+        String whyItFailed = "ResourceBundle not working or language incorrectly chosen";
         Locale.setDefault(new Locale("pl"));
         ResourceBundle languageBundle = ResourceBundle.getBundle("Language");
         //when
         String message = languageBundle.getString("welcome");
         //then
-        assertEquals(message, "Witaj w grze w kółko i krzyżyk!");
+        assertEquals(message, "Witaj w grze w kółko i krzyżyk!", whyItFailed);
     }
 }

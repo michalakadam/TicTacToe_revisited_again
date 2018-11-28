@@ -27,7 +27,7 @@ public class DisplayTest {
         display.print(message);
         //then
         try {
-            assertEquals(byteArrayOutputStream.toString("UTF-8"), "word");
+            assertEquals(byteArrayOutputStream.toString("UTF-8"), "word", whyItFailed);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -42,7 +42,7 @@ public class DisplayTest {
         display.print(message);
         //then
         try {
-            assertEquals(byteArrayOutputStream.toString("UTF-8"), "Sentence can be printed on screen as well.");
+            assertEquals(byteArrayOutputStream.toString("UTF-8"), "Sentence can be printed on screen as well.", whyItFailed);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -57,7 +57,7 @@ public class DisplayTest {
         display.println(message);
         //then
         try {
-            assertEquals(byteArrayOutputStream.toString("UTF-8"), "Sentence can be printed on screen as well.\n");
+            assertEquals(byteArrayOutputStream.toString("UTF-8"), "Sentence can be printed on screen as well.\n", whyItFailed);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -72,7 +72,7 @@ public class DisplayTest {
         display.println(message);
         //then
         try {
-            assertEquals(byteArrayOutputStream.toString("UTF-8"), "Zażółć gęślą jaźń. ~!@#$%^ &*()_+\n");
+            assertEquals(byteArrayOutputStream.toString("UTF-8"), "Zażółć gęślą jaźń. ~!@#$%^ &*()_+\n", whyItFailed);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

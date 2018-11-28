@@ -28,7 +28,7 @@ public class BoardTest {
         //given
         String whyItFailed = "One or more of the slots is not empty.";
         //then
-        Assert.assertEquals(board.getSymbol(index), Symbol.EMPTY);
+        Assert.assertEquals(board.getSymbol(index), Symbol.EMPTY, whyItFailed);
     }
 
     @Test(dataProvider = "slotsOnBoard")
@@ -36,7 +36,7 @@ public class BoardTest {
         //given
         String whyItFailed = "One or more of the slots is not empty.";
         //then
-        assertEquals(board.getSideSize(), 3);
+        assertEquals(board.getSideSize(), 3, whyItFailed);
     }
 
     @Test(dataProvider = "slotsOnBoard")
@@ -46,7 +46,7 @@ public class BoardTest {
         //when
         board.addSymbolAtSlot(index, Symbol.X);
         //then
-        assertEquals(board.getSymbol(index), Symbol.X);
+        assertEquals(board.getSymbol(index), Symbol.X, whyItFailed);
     }
 
     @Test(dataProvider = "slotsOnBoard")
@@ -56,7 +56,7 @@ public class BoardTest {
         //when
         board.addSymbolAtSlot(index, Symbol.O);
         //then
-        assertEquals(board.getSymbol(index), Symbol.O);
+        assertEquals(board.getSymbol(index), Symbol.O, whyItFailed);
     }
 
     @Test
@@ -67,6 +67,6 @@ public class BoardTest {
         board.addSymbolAtSlot(0, Symbol.O);
         board.addSymbolAtSlot(0, Symbol.X);
         //then
-        assertEquals(board.getSymbol(0), Symbol.O);
+        assertEquals(board.getSymbol(0), Symbol.O, whyItFailed);
     }
 }
