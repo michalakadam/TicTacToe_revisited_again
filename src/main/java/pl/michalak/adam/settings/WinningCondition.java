@@ -1,4 +1,4 @@
-package pl.michalak.adam;
+package pl.michalak.adam.settings;
 
 public class WinningCondition {
     int winningCondition;

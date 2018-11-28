@@ -1,10 +1,11 @@
 package pl.michalak.adam;
 
-import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
+import pl.michalak.adam.assessment.WinChecker;
+import pl.michalak.adam.components.Board;
+import pl.michalak.adam.components.Symbol;
+import pl.michalak.adam.settings.WinningCondition;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;

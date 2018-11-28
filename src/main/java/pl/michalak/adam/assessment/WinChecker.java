@@ -1,5 +1,9 @@
 package pl.michalak.adam;
 
+import pl.michalak.adam.components.Board;
+import pl.michalak.adam.components.Symbol;
+import pl.michalak.adam.settings.WinningCondition;
+
 class WinChecker {
     Board board;
     WinningCondition winningCondition;
