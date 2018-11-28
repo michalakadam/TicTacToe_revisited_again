@@ -13,8 +13,8 @@ import java.util.ResourceBundle;
 import static org.testng.Assert.assertEquals;
 
 
-public class DisplayAPITest {
-    DisplayAPI displayAPI;
+public class OutputAPITest {
+    OutputAPI displayAPI;
     ByteArrayOutputStream byteArrayOutputStream;
     PrintStream printStream;
 
@@ -22,7 +22,7 @@ public class DisplayAPITest {
     public void setUp(){
         byteArrayOutputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(byteArrayOutputStream);
-        displayAPI = new DisplayAPI(printStream);
+        displayAPI = new OutputAPI(printStream);
     }
 
     @Test
