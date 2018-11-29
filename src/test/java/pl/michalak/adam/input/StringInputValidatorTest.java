@@ -31,7 +31,7 @@ public class StringInputValidatorTest {
         String option1 = "";
         String option2 = " ";
         //then
-        assertEquals(stringInputValidator.getStringInput(message, option1, option2), " ");
+        assertEquals(stringInputValidator.getStringInputFromPlayer(message, option1, option2), " ");
     }
     @Test(expectedExceptions = NoSuchElementException.class)
     public void inputIsWhiteEnterShouldNotWork() {
@@ -45,7 +45,7 @@ public class StringInputValidatorTest {
         String option1 = "";
         String option2 = " ";
         //then
-        assertEquals(stringInputValidator.getStringInput(message, option1, option2), "");
+        assertEquals(stringInputValidator.getStringInputFromPlayer(message, option1, option2), "");
     }
     @DataProvider
     public static Object[][] characters(){
@@ -64,7 +64,7 @@ public class StringInputValidatorTest {
         String option1 = word1;
         String option2 = word2;
         //then
-        assertEquals(stringInputValidator.getStringInput(message, option1, option2), word1);
+        assertEquals(stringInputValidator.getStringInputFromPlayer(message, option1, option2), word1);
     }
     @Test
     public void inputBeginningWithSmallLetterIsCorrect(){
@@ -78,7 +78,7 @@ public class StringInputValidatorTest {
         String option1 = "X";
         String option2 = "O";
         //then
-        assertEquals(stringInputValidator.getStringInput(message, option1, option2), "x");
+        assertEquals(stringInputValidator.getStringInputFromPlayer(message, option1, option2), "x");
     }
     @Test
     public void inputBeginningWithCapitalLetterIsCorrect(){
@@ -92,7 +92,7 @@ public class StringInputValidatorTest {
         String option1 = "x";
         String option2 = "o";
         //then
-        assertEquals(stringInputValidator.getStringInput(message, option1, option2), "X");
+        assertEquals(stringInputValidator.getStringInputFromPlayer(message, option1, option2), "X");
     }
 
     @Test(expectedExceptions = NoSuchElementException.class)
@@ -107,7 +107,7 @@ public class StringInputValidatorTest {
         String option1 = "x";
         String option2 = "o";
         //then
-        assertEquals(stringInputValidator.getStringInput(message, option1, option2), "This line is never reached anyway");
+        assertEquals(stringInputValidator.getStringInputFromPlayer(message, option1, option2), "This line is never reached anyway");
     }
 
 }

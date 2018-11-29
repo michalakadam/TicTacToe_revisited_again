@@ -26,7 +26,7 @@ class IntInputValidator {
     private boolean inputIsInRange(int input, int min, int max){
         return input >= min && input <= max;
     }
-    public int getIntInputFromPlayer(String message, int min, int max){
+    int getIntInputFromPlayer(String message, int min, int max){
         outputAPI.printFromResourceBundle(message);
         int input = checkInputFromPlayer();
         if (inputIsInRange(input, min, max)) {

@@ -11,12 +11,10 @@ class MenuPrinter {
 
     void printMenu(){
         consolePrinter.printFromResourceBundleAndAddNextLine("gameName");
-        consolePrinter.println("\t==========================\n");
+        consolePrinter.println("\t========================\n");
         consolePrinter.printFromResourceBundleAndAddNextLine("choosePlay");
         consolePrinter.printFromResourceBundleAndAddNextLine("changeSettings");
         consolePrinter.printFromResourceBundleAndAddNextLine("changeLanguage");
         consolePrinter.print("\n");
-        consolePrinter.printFromResourceBundle("decideInMenu");
-
     }
 }
