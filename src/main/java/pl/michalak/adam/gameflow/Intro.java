@@ -53,7 +53,7 @@ class Intro {
             propertiesAPI.setBoardSizeForThisGame(customBoardSize);
         }
         else if(gameSettingsMenuDecision == 2) {
-            int maxWinningCondition = propertiesAPI.getBoardsizeForThisGame();
+            int maxWinningCondition = propertiesAPI.getBoardSizeForThisGame();
             int customWinningCondition = inputAPI.getIntInputFromPlayer("getWinningCondition", 2, maxWinningCondition);
             propertiesAPI.setWinningConditionForThisGame(customWinningCondition);
         }

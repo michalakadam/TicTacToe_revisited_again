@@ -15,9 +15,9 @@ class ResourceBundleTest {
         Locale.setDefault(new Locale("en"));
         ResourceBundle languageBundle = ResourceBundle.getBundle("Language");
         //when
-        String message = languageBundle.getString("gameName");
+        String message = languageBundle.getString("testMessage");
         //then
-        assertEquals(message, "Welcome in TicTacToe!", whyItFailed);
+        assertEquals(message, "It's a test message ", whyItFailed);
     }
 
     @Test
@@ -27,8 +27,8 @@ class ResourceBundleTest {
         Locale.setDefault(new Locale("pl"));
         ResourceBundle languageBundle = ResourceBundle.getBundle("Language");
         //when
-        String message = languageBundle.getString("gameName");
+        String message = languageBundle.getString("testMessage");
         //then
-        assertEquals(message, "Witaj w grze w kółko i krzyżyk!", whyItFailed);
+        assertEquals(message, "To jest wiadomość testowa ", whyItFailed);
     }
 }

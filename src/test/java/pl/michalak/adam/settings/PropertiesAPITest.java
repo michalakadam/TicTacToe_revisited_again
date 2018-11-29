@@ -1,8 +1,6 @@
 package pl.michalak.adam.settings;
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import java.util.Locale;
@@ -14,12 +12,11 @@ public class PropertiesAPITest {
 
     @BeforeMethod
     public void setUp(){
-        int winningCondition = 3;
-        propertiesAPI = new PropertiesAPI(winningCondition);
+        propertiesAPI = new PropertiesAPI();
     }
 
     @Test
-    public void shouldReturnWinningCondition(){
+    public void shouldReturnDefaultWinningCondition(){
         //given
         String whyItFailed = "returned value isn't equal to expected";
         //when
@@ -29,11 +26,35 @@ public class PropertiesAPITest {
     }
 
     @Test
-    public void defaultLocaleShouldBePolish(){
+    public void shouldReturnDefaultBoardSize(){
         //given
-        String whyItFailed = "default locale on this machine is not polish";
+        String whyItFailed = "returned value isn't equal to expected";
+        //when
+        int boardSize = propertiesAPI.getBoardSizeForThisGame();
         //then
-        assertEquals(Locale.getDefault().getCountry(), "PL");
+        assertEquals(boardSize, 3, whyItFailed);
+    }
+
+    @Test
+    public void shouldReturnWinningConditionSetByUser(){
+        //given
+        String whyItFailed = "returned value isn't equal to expected";
+        //when
+        propertiesAPI.setWinningConditionForThisGame(4);
+        int winningCondition = propertiesAPI.getWinningConditionForThisGame();
+        //then
+        assertEquals(winningCondition, 4, whyItFailed);
+    }
+
+    @Test
+    public void shouldReturnBoardSizeSetByUser(){
+        //given
+        String whyItFailed = "returned value isn't equal to expected";
+        //when
+        propertiesAPI.setBoardSizeForThisGame(4);
+        int boardSize = propertiesAPI.getBoardSizeForThisGame();
+        //then
+        assertEquals(boardSize, 4, whyItFailed);
     }
 
     @Test
@@ -44,5 +65,15 @@ public class PropertiesAPITest {
         propertiesAPI.setLocale("en", "US");
         //then
         assertEquals(Locale.getDefault().getLanguage(), "en");
+    }
+
+    @Test
+    public void shouldChangeLocaleToPolish(){
+        //given
+        String whyItFailed = "Locale wasn't changed to polish";
+        //when
+        propertiesAPI.setLocale("pl", "PL");
+        //then
+        assertEquals(Locale.getDefault().getLanguage(), "pl");
     }
 }

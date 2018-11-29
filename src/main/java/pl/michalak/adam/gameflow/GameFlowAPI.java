@@ -13,7 +13,7 @@ public class GameFlowAPI {
     InputAPI inputAPI;
 
     public GameFlowAPI(){
-        this.propertiesAPI = new PropertiesAPI(3);
+        this.propertiesAPI = new PropertiesAPI();
         this.outputAPI = new OutputAPI(new PrintStream(System.out));
         this.inputAPI = new InputAPI(outputAPI);
     }

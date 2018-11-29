@@ -5,7 +5,7 @@ public class PropertiesAPI {
     private final LocaleWrapper localeWrapper;
     private final BoardSize boardSize;
 
-    public PropertiesAPI(int winningCondition){
+    public PropertiesAPI(){
         this.boardSize = new BoardSize(DefaultGameProperties.BOARDSIZE.getValue());
         this.winningCondition = new WinningCondition(DefaultGameProperties.WINNINGCONDITION.getValue());
         this.localeWrapper = new LocaleWrapper();
@@ -22,5 +22,5 @@ public class PropertiesAPI {
 
     public void setBoardSizeForThisGame(int boardSizeValue) { boardSize.setBoardSize(boardSizeValue);}
 
-    public int getBoardsizeForThisGame(){ return boardSize.getBoardSize();}
+    public int getBoardSizeForThisGame(){ return boardSize.getBoardSize();}
 }
