@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 class PlayersList {
-    List<Player> players;
+    private final List<Player> players;
     PlayersList(String playerOneDefaultName, String playerTwoDefaultName) {
         this.players = new ArrayList<>();
         players.add(new Player(playerOneDefaultName));

@@ -25,8 +25,7 @@ public class WinCheckerTest {
         String whyItFailed = "apparently win checker returned true even though componentsAPI is empty";
         int boardSize = 7;
         componentsAPI = new ComponentsAPI(boardSize);
-        int winningCondition = boardSize;
-        winChecker = new WinChecker(componentsAPI, winningCondition);
+        winChecker = new WinChecker(componentsAPI, boardSize);
         //then
         assertFalse(winChecker.checkWin(columnStartingIndex, Symbol.X), whyItFailed);
     }
@@ -109,8 +108,7 @@ public class WinCheckerTest {
         String whyItFailed = "checkWin found not full first diagonal to be sufficient winning condition";
         int boardSize = 3;
         componentsAPI = new ComponentsAPI(boardSize);
-        int winningCondition = boardSize;
-        winChecker = new WinChecker(componentsAPI, winningCondition);
+        winChecker = new WinChecker(componentsAPI, boardSize);
         //when
         componentsAPI.addSymbolOnBoardAtSlot(0, Symbol.X);
         componentsAPI.addSymbolOnBoardAtSlot(4, Symbol.O);
@@ -160,8 +158,7 @@ public class WinCheckerTest {
         String whyItFailed = "checkWin found not full second diagonal to be sufficient winning condition";
         int boardSize = 3;
         componentsAPI = new ComponentsAPI(boardSize);
-        int winningCondition = boardSize;
-        winChecker = new WinChecker(componentsAPI, winningCondition);
+        winChecker = new WinChecker(componentsAPI, boardSize);
         //when
         componentsAPI.addSymbolOnBoardAtSlot(2, Symbol.X);
         componentsAPI.addSymbolOnBoardAtSlot(4, Symbol.O);
@@ -176,8 +173,7 @@ public class WinCheckerTest {
         String whyItFailed = "checkWin found full second diagonal not to be sufficient winning condition";
         int boardSize = 3;
         componentsAPI = new ComponentsAPI(boardSize);
-        int winningCondition = boardSize;
-        winChecker = new WinChecker(componentsAPI, winningCondition);
+        winChecker = new WinChecker(componentsAPI, boardSize);
         //when
         componentsAPI.addSymbolOnBoardAtSlot(2, Symbol.O);
         componentsAPI.addSymbolOnBoardAtSlot(4, Symbol.O);

@@ -12,9 +12,9 @@ import java.util.NoSuchElementException;
 import static org.testng.Assert.*;
 
 public class InputAPITest {
-    InputReader inputReader;
-    InputAPI inputAPI;
-    OutputAPI outputAPI;
+    private InputReader inputReader;
+    private InputAPI inputAPI;
+    private OutputAPI outputAPI;
     @BeforeMethod
     public void setUp(){
         outputAPI = new OutputAPI(new PrintStream(System.out));

@@ -27,7 +27,7 @@ public class InputReaderTest {
     }
 
     @Test(dataProvider="numbers")
-    public void wejścieInt(int number) {
+    public void intInputShouldWork(int number) {
         //given
         String data = Integer.toString(number);
         System.setIn(new ByteArrayInputStream(data.getBytes()));
@@ -43,7 +43,7 @@ public class InputReaderTest {
         };
     }
     @Test(dataProvider="characterSequences")
-    public void wejścieString(String data) {
+    public void stringInputShouldWork(String data) {
         //given
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         InputReader inputReader = new InputReader(System.in);

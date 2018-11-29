@@ -1,7 +1,7 @@
 package pl.michalak.adam.output;
 
 class MenuPrinter {
-    ConsolePrinter consolePrinter;
+    private final ConsolePrinter consolePrinter;
 
     MenuPrinter(ConsolePrinter consolePrinter){
         this.consolePrinter = consolePrinter;

@@ -1,8 +1,8 @@
 package pl.michalak.adam.users;
 
 class Player {
-    String name;
-    int score;
+    private String name;
+    private int score;
 
     Player(String name){
         this.name = name;

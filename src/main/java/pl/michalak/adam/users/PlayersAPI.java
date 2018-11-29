@@ -3,7 +3,7 @@ package pl.michalak.adam.users;
 import pl.michalak.adam.exceptions.PlayersNamesAreTheSameException;
 
 public class PlayersAPI {
-    PlayersList playersList;
+    private final PlayersList playersList;
 
     public PlayersAPI(){
         this.playersList = new PlayersList(DefaultPlayersNames.PLAYERONE.getValue(), DefaultPlayersNames.PLAYERTWO.getValue());

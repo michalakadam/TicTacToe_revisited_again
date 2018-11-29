@@ -7,7 +7,7 @@ import pl.michalak.adam.gameflow.GameFlowAPI;
  *
  * @author Adam Michalak
  */
-public class OX {
+class OX {
 public static void main(String[] args) {
         GameFlowAPI gameFlowAPI = new GameFlowAPI();
         gameFlowAPI.start();

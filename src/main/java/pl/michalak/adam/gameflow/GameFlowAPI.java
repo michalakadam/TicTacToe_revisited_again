@@ -9,10 +9,10 @@ import java.io.PrintStream;
 
 
 public class GameFlowAPI {
-    PropertiesAPI propertiesAPI;
-    OutputAPI outputAPI;
-    InputAPI inputAPI;
-    PlayersAPI playersAPI;
+    private final PropertiesAPI propertiesAPI;
+    private final OutputAPI outputAPI;
+    private final InputAPI inputAPI;
+    private final PlayersAPI playersAPI;
 
     public GameFlowAPI(){
         this.propertiesAPI = new PropertiesAPI();

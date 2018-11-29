@@ -22,7 +22,7 @@ class Intro {
         mainMenu();
     }
 
-    void mainMenu(){
+    private void mainMenu(){
         outputAPI.printMainMenu();
         int mainMenuDecision = inputAPI.getIntInputFromPlayer("decideInMainMenu", 1, 4);
         if(mainMenuDecision == 2)
@@ -33,7 +33,7 @@ class Intro {
             changeLanguage();
     }
 
-    void namePlayers(){
+    private void namePlayers(){
         outputAPI.printPlayersNamesMenu();
         int playersNamesMenuDecision = inputAPI.getIntInputFromPlayer("decideInPlayersNamesMenu", 1, 3);
         if(playersNamesMenuDecision == 1){
@@ -45,7 +45,7 @@ class Intro {
         mainMenu();
     }
 
-    void providePlayerNameThatCannotBeTheSame(int playersNamesMenuDecision, String message){
+    private void providePlayerNameThatCannotBeTheSame(int playersNamesMenuDecision, String message){
         String playerName = inputAPI.getStringInputFromPlayerWithNoStringsAttached(message);
         try {
             playersAPI.setPlayerName(playersNamesMenuDecision, playerName);
@@ -56,7 +56,7 @@ class Intro {
         }
     }
 
-    void changeLanguage(){
+    private void changeLanguage(){
         outputAPI.printLanguageMenu();
         int languageMenuDecision = inputAPI.getIntInputFromPlayer("decideInLanguageMenu", 1, 4);
         if (languageMenuDecision == 1) {
@@ -72,7 +72,7 @@ class Intro {
         mainMenu();
     }
 
-    void changeSettings(){
+    private void changeSettings(){
         outputAPI.printGameSettingsMenu();
         int gameSettingsMenuDecision = inputAPI.getIntInputFromPlayer("decideInSettingsMenu", 1, 3);
         if(gameSettingsMenuDecision == 1){
