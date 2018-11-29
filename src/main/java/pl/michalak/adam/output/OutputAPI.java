@@ -4,16 +4,16 @@ import java.io.PrintStream;
 
 public class OutputAPI {
     private final ConsolePrinter consolePrinter;
-    private final MenuPrinter MenuPrinter;
+    private final MenuPrinter menuPrinter;
+    private final ErrorPrinter errorPrinter;
 
-    public OutputAPI(PrintStream printStream) {
+    public OutputAPI(PrintStream printStream){
         this.consolePrinter = new ConsolePrinter(printStream);
-        this.MenuPrinter = new MenuPrinter(consolePrinter);
+        this.menuPrinter = new MenuPrinter(consolePrinter);
+        this.errorPrinter  = new ErrorPrinter(new PrintStream(System.err));
     }
 
     public void print(String message) { consolePrinter.print(message);}
-
-    public void println(String message) { consolePrinter.println(message); }
 
     public void printFromResourceBundle(String message) {
         consolePrinter.printFromResourceBundle(message);
@@ -25,17 +25,22 @@ public class OutputAPI {
         consolePrinter.printFromResourceBundleWithFormatting(message, params);
     }
 
+    public void printErrorFromResourceBundle(String errorMessage){ errorPrinter.printFromResourceBundle(errorMessage);}
+
+    public void printErrorFromResourceBundleAndAddNextLine(String errorMessage){ errorPrinter.printFromResourceBundleAndAddNextLine(errorMessage);}
+
+    public void printErrorFromResourceBundleWithFormatting(String errorMessage, Object... params){errorPrinter.printFromResourceBundleWithFormatting(errorMessage, params);}
     public void printMainMenu(){
-        MenuPrinter.printMainMenu();
+        menuPrinter.printMainMenu();
     }
 
-    public void printPlayersNamesMenu() { MenuPrinter.printPlayersNamesMenu(); }
-    public void printGameSettingsMenu() { MenuPrinter.printGameSettingsMenu(); }
+    public void printPlayersNamesMenu() { menuPrinter.printPlayersNamesMenu(); }
 
-    public void printLanguageMenu() { MenuPrinter.printLanguageMenu();}
+    public void printGameSettingsMenu() { menuPrinter.printGameSettingsMenu(); }
+
+    public void printLanguageMenu() { menuPrinter.printLanguageMenu();}
 
     public void reloadResourceBundleAfterLocaleChange(){
         consolePrinter.reloadResourceBundle();
     }
-
 }

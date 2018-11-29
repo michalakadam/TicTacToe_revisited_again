@@ -29,7 +29,7 @@ class StringInputValidator {
             else
                 outputAPI.printFromResourceBundleAndAddNextLine("changedMyMind");
         }
-        outputAPI.printFromResourceBundleWithFormatting("insertCorrectAnswer", option1, option2);
+        outputAPI.printErrorFromResourceBundleWithFormatting("insertCorrectAnswer", option1, option2);
         return getStringInputFromPlayer(message, option1, option2);
     }
 }

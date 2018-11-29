@@ -23,7 +23,7 @@ class IntInputValidator {
             if(wrongAnswer.equals("q"))
                 exitValidation(message);
             else
-                outputAPI.printFromResourceBundle("wrongValue");
+                outputAPI.printErrorFromResourceBundle("wrongValue");
             return checkInputFromPlayer(message);
         }
     }
@@ -44,7 +44,7 @@ class IntInputValidator {
         if (inputIsInRange(input, min, max)) {
             return input;
         }
-        outputAPI.printFromResourceBundleWithFormatting("numberOutOfRange", min, max);
+        outputAPI.printErrorFromResourceBundleWithFormatting("numberOutOfRange", min, max);
         return getIntInputFromPlayer(message, min, max);
     }
 }

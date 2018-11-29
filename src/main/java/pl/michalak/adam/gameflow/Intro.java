@@ -37,22 +37,22 @@ class Intro {
         outputAPI.printPlayersNamesMenu();
         int playersNamesMenuDecision = inputAPI.getIntInputFromPlayer("decideInPlayersNamesMenu", 1, 3);
         if(playersNamesMenuDecision == 1){
-           providePlayerName(playersNamesMenuDecision, "giveNameOfFirstPlayer");
+           providePlayerNameThatCannotBeTheSame(playersNamesMenuDecision, "giveNameOfFirstPlayer");
         }
         else if(playersNamesMenuDecision == 2){
-            providePlayerName(playersNamesMenuDecision, "giveNameOfSecondPlayer");
+            providePlayerNameThatCannotBeTheSame(playersNamesMenuDecision, "giveNameOfSecondPlayer");
         }
         mainMenu();
     }
 
-    void providePlayerName(int playersNamesMenuDecision, String message){
+    void providePlayerNameThatCannotBeTheSame(int playersNamesMenuDecision, String message){
         String playerName = inputAPI.getStringInputFromPlayerWithNoStringsAttached(message);
         try {
             playersAPI.setPlayerName(playersNamesMenuDecision, playerName);
         }
         catch(PlayersNamesAreTheSameException exception){
-            outputAPI.printFromResourceBundleAndAddNextLine("playersNamesAreTheSame");
-            providePlayerName(playersNamesMenuDecision, message);
+            outputAPI.printErrorFromResourceBundleAndAddNextLine("playersNamesAreTheSame");
+            providePlayerNameThatCannotBeTheSame(playersNamesMenuDecision, message);
         }
     }
 
