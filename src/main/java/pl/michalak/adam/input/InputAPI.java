@@ -9,8 +9,8 @@ public class InputAPI {
 
     public InputAPI(OutputAPI outputAPI){
         this.inputReader = new InputReader(System.in);
-        this.intInputValidator = new IntInputValidator(outputAPI, inputReader);
         this.stringInputValidator = new StringInputValidator(outputAPI, inputReader);
+        this.intInputValidator = new IntInputValidator(outputAPI, inputReader, stringInputValidator);
     }
 
     public int getIntInputFromPlayer(String message, int min, int max){

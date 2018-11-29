@@ -22,6 +22,13 @@ class StringInputValidator {
         String answer = inputReader.getString();
         if(checkStringInput(option1, answer) || checkStringInput(option2, answer))
             return answer;
+        else if(answer.equals("q") || answer.equals("Q")){
+            String areYouSure = getStringInputFromPlayer("validateUserExitWish", "Y", "N");
+            if(areYouSure.equals("Y") || areYouSure.equals("y"))
+                System.exit(0);
+            else
+                outputAPI.printFromResourceBundleAndAddNextLine("changedMyMind");
+        }
         outputAPI.printFromResourceBundleWithFormatting("insertCorrectAnswer", option1, option2);
         return getStringInputFromPlayer(message, option1, option2);
     }
