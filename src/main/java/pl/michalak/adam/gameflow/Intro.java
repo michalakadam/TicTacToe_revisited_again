@@ -23,9 +23,9 @@ class Intro {
         int mainMenuDecision = inputAPI.getIntInputFromPlayer("decideInMainMenu", 1, 4);
         /*if(mainMenuDecision == 2)
             namePlayers();
-        else if(mainMenuDecision == 3)
+        else */if(mainMenuDecision == 3)
             changeSettings();
-        */if(mainMenuDecision == 4)
+        if(mainMenuDecision == 4)
             changeLanguage();
     }
 
@@ -41,6 +41,21 @@ class Intro {
             propertiesAPI.setLocale("pl", "PL");
             outputAPI.reloadResourceBundleAfterLocaleChange();
             outputAPI.printFromResourceBundleAndAddNextLine("languageChangedConfirmation");
+        }
+        mainMenu();
+    }
+
+    void changeSettings(){
+        outputAPI.printGameSettingsMenu();
+        int gameSettingsMenuDecision = inputAPI.getIntInputFromPlayer("decideInSettingsMenu", 1, 3);
+        if(gameSettingsMenuDecision == 1){
+            int customBoardSize = inputAPI.getIntInputFromPlayer("getBoardSize", 3, 9);
+            propertiesAPI.setBoardSizeForThisGame(customBoardSize);
+        }
+        else if(gameSettingsMenuDecision == 2) {
+            int maxWinningCondition = propertiesAPI.getBoardsizeForThisGame();
+            int customWinningCondition = inputAPI.getIntInputFromPlayer("getWinningCondition", 2, maxWinningCondition);
+            propertiesAPI.setWinningConditionForThisGame(customWinningCondition);
         }
         mainMenu();
     }

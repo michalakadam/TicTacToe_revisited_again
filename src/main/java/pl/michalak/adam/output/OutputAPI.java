@@ -34,4 +34,6 @@ public class OutputAPI {
     public void reloadResourceBundleAfterLocaleChange(){
         consolePrinter.reloadResourceBundle();
     }
+
+    public void printGameSettingsMenu() { MenuPrinter.printGameSettingsMenu(); }
 }

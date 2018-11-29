@@ -10,7 +10,7 @@ class MenuPrinter {
     void printMainMenu(){
         consolePrinter.print("\n");
         consolePrinter.printFromResourceBundleAndAddNextLine("gameName");
-        consolePrinter.println("\t========================\n");
+        consolePrinter.println("\t=======================");
         consolePrinter.printFromResourceBundleAndAddNextLine("choosePlay");
         consolePrinter.printFromResourceBundleAndAddNextLine("namePlayers");
         consolePrinter.printFromResourceBundleAndAddNextLine("changeGameSettings");
@@ -20,7 +20,17 @@ class MenuPrinter {
 
     public void printLanguageMenu() {
         consolePrinter.print("\n");
-        consolePrinter.printFromResourceBundle("languageMenu");
+        consolePrinter.printFromResourceBundleAndAddNextLine("languageMenuTitleAndLanguages");
+        consolePrinter.printFromResourceBundleAndAddNextLine("goBackToMainMenu");
+        consolePrinter.print("\n");
+    }
+
+    public void printGameSettingsMenu() {
+        consolePrinter.print("\n");
+        consolePrinter.printFromResourceBundleAndAddNextLine("settingsMenuTitle");
+        consolePrinter.printFromResourceBundleAndAddNextLine("boardSizeSet");
+        consolePrinter.printFromResourceBundleAndAddNextLine("winningConditionSet");
+        consolePrinter.printFromResourceBundleAndAddNextLine("goBackToMainMenu");
         consolePrinter.print("\n");
     }
 }

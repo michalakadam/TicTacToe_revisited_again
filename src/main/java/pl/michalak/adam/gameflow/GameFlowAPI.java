@@ -20,6 +20,7 @@ public class GameFlowAPI {
     public void start() {
         Intro introduction = new Intro(outputAPI, propertiesAPI, inputAPI);
         introduction.beforeGame();
+        outputAPI.print("I'm at the beginning again!");
     }
 
 }
