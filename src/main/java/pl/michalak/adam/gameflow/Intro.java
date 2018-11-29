@@ -1,5 +1,6 @@
 package pl.michalak.adam.gameflow;
 
+import pl.michalak.adam.exceptions.PlayersNamesAreTheSameException;
 import pl.michalak.adam.input.InputAPI;
 import pl.michalak.adam.output.OutputAPI;
 import pl.michalak.adam.settings.PropertiesAPI;
@@ -32,6 +33,29 @@ class Intro {
             changeLanguage();
     }
 
+    void namePlayers(){
+        outputAPI.printPlayersNamesMenu();
+        int playersNamesMenuDecision = inputAPI.getIntInputFromPlayer("decideInPlayersNamesMenu", 1, 3);
+        if(playersNamesMenuDecision == 1){
+           providePlayerName(playersNamesMenuDecision, "giveNameOfFirstPlayer");
+        }
+        else if(playersNamesMenuDecision == 2){
+            providePlayerName(playersNamesMenuDecision, "giveNameOfSecondPlayer");
+        }
+        mainMenu();
+    }
+
+    void providePlayerName(int playersNamesMenuDecision, String message){
+        String playerName = inputAPI.getStringInputFromPlayerWithNoStringsAttached(message);
+        try {
+            playersAPI.setPlayerName(playersNamesMenuDecision, playerName);
+        }
+        catch(PlayersNamesAreTheSameException exception){
+            outputAPI.printFromResourceBundleAndAddNextLine("playersNamesAreTheSame");
+            providePlayerName(playersNamesMenuDecision, message);
+        }
+    }
+
     void changeLanguage(){
         outputAPI.printLanguageMenu();
         int languageMenuDecision = inputAPI.getIntInputFromPlayer("decideInLanguageMenu", 1, 4);
@@ -59,20 +83,6 @@ class Intro {
             int maxWinningCondition = propertiesAPI.getBoardSizeForThisGame();
             int customWinningCondition = inputAPI.getIntInputFromPlayer("getWinningCondition", 2, maxWinningCondition);
             propertiesAPI.setWinningConditionForThisGame(customWinningCondition);
-        }
-        mainMenu();
-    }
-
-    void namePlayers(){
-        outputAPI.printPlayersNamesMenu();
-        int playersNamesMenuDecision = inputAPI.getIntInputFromPlayer("decideInPlayersNamesMenu", 1, 3);
-        if(playersNamesMenuDecision == 1){
-            String playerOneName = inputAPI.getStringInputFromPlayerWithNoStringsAttached("giveNameOfFirstPlayer");
-            playersAPI.setPlayerName(playersNamesMenuDecision, playerOneName);
-        }
-        else if(playersNamesMenuDecision == 2){
-            String playerTwoName = inputAPI.getStringInputFromPlayerWithNoStringsAttached("giveNameOfSecondPlayer");
-            playersAPI.setPlayerName(playersNamesMenuDecision, playerTwoName);
         }
         mainMenu();
     }

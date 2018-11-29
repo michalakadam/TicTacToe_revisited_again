@@ -12,4 +12,8 @@ class Player {
     void setPlayerName(String name){
         this.name = name;
     }
+
+    public String getName() {
+        return this.name;
+    }
 }

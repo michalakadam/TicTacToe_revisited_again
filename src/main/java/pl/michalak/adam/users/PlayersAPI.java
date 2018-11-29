@@ -1,5 +1,7 @@
 package pl.michalak.adam.users;
 
+import pl.michalak.adam.exceptions.PlayersNamesAreTheSameException;
+
 public class PlayersAPI {
     PlayersList playersList;
 
@@ -7,7 +9,7 @@ public class PlayersAPI {
         this.playersList = new PlayersList(DefaultPlayersNames.PLAYERONE.getValue(), DefaultPlayersNames.PLAYERTWO.getValue());
     }
 
-    public void setPlayerName(int playerNumber, String playerName) {
+    public void setPlayerName(int playerNumber, String playerName) throws PlayersNamesAreTheSameException {
         playersList.setPlayerName(playerNumber, playerName);
     }
 }
