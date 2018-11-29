@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 class ConsolePrinter {
     private final PrintStream printStream;
-    private final ResourceBundle languageBundle;
+    private ResourceBundle languageBundle;
 
     ConsolePrinter(PrintStream printStream) {
         this.printStream = printStream;
@@ -31,5 +31,9 @@ class ConsolePrinter {
 
     void printFromResourceBundleAndAddNextLine(String message){
         printStream.println(languageBundle.getString(message));
+    }
+
+    void reloadResourceBundle(){
+        this.languageBundle = ResourceBundle.getBundle("Language");
     }
 }

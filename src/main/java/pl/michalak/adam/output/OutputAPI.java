@@ -1,16 +1,14 @@
 package pl.michalak.adam.output;
 
 import java.io.PrintStream;
-import java.text.MessageFormat;
-import java.util.ResourceBundle;
 
 public class OutputAPI {
     private final ConsolePrinter consolePrinter;
-    private final MenuPrinter menuPrinter;
+    private final MenuPrinter MenuPrinter;
 
     public OutputAPI(PrintStream printStream) {
         this.consolePrinter = new ConsolePrinter(printStream);
-        this.menuPrinter = new MenuPrinter(consolePrinter);
+        this.MenuPrinter = new MenuPrinter(consolePrinter);
     }
 
     public void print(String message) { consolePrinter.print(message);}
@@ -27,7 +25,13 @@ public class OutputAPI {
         consolePrinter.printFromResourceBundleWithFormatting(message, params);
     }
 
-    public void printMenu(){
-        menuPrinter.printMenu();
+    public void printMainMenu(){
+        MenuPrinter.printMainMenu();
+    }
+
+    public void printLanguageMenu() { MenuPrinter.printLanguageMenu();}
+
+    public void reloadResourceBundleAfterLocaleChange(){
+        consolePrinter.reloadResourceBundle();
     }
 }

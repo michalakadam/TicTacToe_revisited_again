@@ -1,7 +1,5 @@
 package pl.michalak.adam.output;
 
-import pl.michalak.adam.components.ComponentsAPI;
-
 class MenuPrinter {
     ConsolePrinter consolePrinter;
 
@@ -9,12 +7,20 @@ class MenuPrinter {
         this.consolePrinter = consolePrinter;
     }
 
-    void printMenu(){
+    void printMainMenu(){
+        consolePrinter.print("\n");
         consolePrinter.printFromResourceBundleAndAddNextLine("gameName");
         consolePrinter.println("\t========================\n");
         consolePrinter.printFromResourceBundleAndAddNextLine("choosePlay");
-        consolePrinter.printFromResourceBundleAndAddNextLine("changeSettings");
+        consolePrinter.printFromResourceBundleAndAddNextLine("namePlayers");
+        consolePrinter.printFromResourceBundleAndAddNextLine("changeGameSettings");
         consolePrinter.printFromResourceBundleAndAddNextLine("changeLanguage");
+        consolePrinter.print("\n");
+    }
+
+    public void printLanguageMenu() {
+        consolePrinter.print("\n");
+        consolePrinter.printFromResourceBundle("languageMenu");
         consolePrinter.print("\n");
     }
 }

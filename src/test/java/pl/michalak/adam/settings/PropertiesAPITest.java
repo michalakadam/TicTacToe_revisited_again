@@ -1,7 +1,11 @@
 package pl.michalak.adam.settings;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
+
+import java.util.Locale;
 
 import static org.testng.Assert.assertEquals;
 
@@ -22,5 +26,23 @@ public class PropertiesAPITest {
         int winningCondition = propertiesAPI.getWinningConditionForThisGame();
         //then
         assertEquals(winningCondition, 3, whyItFailed);
+    }
+
+    @Test
+    public void defaultLocaleShouldBePolish(){
+        //given
+        String whyItFailed = "default locale on this machine is not polish";
+        //then
+        assertEquals(Locale.getDefault().getCountry(), "PL");
+    }
+
+    @Test
+    public void shouldChangeLocaleToEnglish(){
+        //given
+        String whyItFailed = "Locale wasn't changed to english";
+        //when
+        propertiesAPI.setLocale("en", "US");
+        //then
+        assertEquals(Locale.getDefault().getLanguage(), "en");
     }
 }
