@@ -5,22 +5,29 @@ import java.text.MessageFormat;
 import java.util.ResourceBundle;
 
 public class OutputAPI {
-    private final Display display;
-    private final ResourceBundle languageBundle;
+    private final ConsolePrinter consolePrinter;
+    private final MenuPrinter menuPrinter;
 
     public OutputAPI(PrintStream printStream) {
-        this.display = new Display(printStream);
-        this.languageBundle = ResourceBundle.getBundle("Language");
-
+        this.consolePrinter = new ConsolePrinter(printStream);
+        this.menuPrinter = new MenuPrinter(consolePrinter);
     }
 
-    public void print(String message) { display.print(message);}
+    public void print(String message) { consolePrinter.print(message);}
+
+    public void println(String message) { consolePrinter.println(message); }
 
     public void printFromResourceBundle(String message) {
-        display.print(languageBundle.getString(message));
+        consolePrinter.printFromResourceBundle(message);
     }
 
+    public void printFromResourceBundleAndAddNextLine(String message) {consolePrinter.printFromResourceBundleAndAddNextLine(message);}
+
     public void printFromResourceBundleWithFormatting(String message, Object... params) {
-        display.print(MessageFormat.format(languageBundle.getString(message), params));
+        consolePrinter.printFromResourceBundleWithFormatting(message, params);
+    }
+
+    public void printMenu(){
+        menuPrinter.printMenu();
     }
 }

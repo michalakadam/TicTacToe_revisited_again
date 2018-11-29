@@ -3,7 +3,6 @@ package pl.michalak.adam.gameflow;
 import pl.michalak.adam.output.OutputAPI;
 import pl.michalak.adam.settings.PropertiesAPI;
 
-import java.io.OutputStream;
 import java.io.PrintStream;
 
 
@@ -16,10 +15,8 @@ public class GameFlowAPI {
         outputAPI = new OutputAPI(new PrintStream(System.out));
     }
     public void start() {
-        Introduction introduction = new Introduction(outputAPI, propertiesAPI);
-        introduction.begin();
-
-
+        Intro introduction = new Intro(outputAPI, propertiesAPI);
+        introduction.beforeGame();
     }
 
 }

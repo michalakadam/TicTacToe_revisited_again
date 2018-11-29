@@ -9,14 +9,14 @@ import java.io.UnsupportedEncodingException;
 
 import static org.testng.Assert.*;
 
-public class DisplayTest {
+public class ConsolePrinterTest {
     private ByteArrayOutputStream byteArrayOutputStream;
-    private Display display;
+    private ConsolePrinter consolePrinter;
 
     @BeforeMethod
     public void setup(){
         byteArrayOutputStream = new ByteArrayOutputStream();
-        display = new Display(new PrintStream(byteArrayOutputStream));
+        consolePrinter = new ConsolePrinter(new PrintStream(byteArrayOutputStream));
     }
     @Test
     public void singleWordShouldBePrintedOnScreen(){
@@ -24,7 +24,7 @@ public class DisplayTest {
         String whyItFailed = "Message printed isn't equal to message stored in byte array or encoding problem occured";
         String message = "word";
         //when
-        display.print(message);
+        consolePrinter.print(message);
         //then
         try {
             assertEquals(byteArrayOutputStream.toString("UTF-8"), "word", whyItFailed);
@@ -39,7 +39,7 @@ public class DisplayTest {
         String whyItFailed = "Message printed isn't equal to message stored in byte array or encoding problem occured";
         String message = "Sentence can be printed on screen as well.";
         //when
-        display.print(message);
+        consolePrinter.print(message);
         //then
         try {
             assertEquals(byteArrayOutputStream.toString("UTF-8"), "Sentence can be printed on screen as well.", whyItFailed);
@@ -54,7 +54,7 @@ public class DisplayTest {
         String whyItFailed = "Message printed isn't equal to message stored in byte array or encoding problem occured";
         String message = "Sentence can be printed on screen as well.";
         //when
-        display.println(message);
+        consolePrinter.println(message);
         //then
         try {
             assertEquals(byteArrayOutputStream.toString("UTF-8"), "Sentence can be printed on screen as well.\n", whyItFailed);
@@ -69,7 +69,7 @@ public class DisplayTest {
         String whyItFailed = "Message printed isn't equal to message stored in byte array or encoding problem occured";
         String message = "Zażółć gęślą jaźń. ~!@#$%^ &*()_+";
         //when
-        display.println(message);
+        consolePrinter.println(message);
         //then
         try {
             assertEquals(byteArrayOutputStream.toString("UTF-8"), "Zażółć gęślą jaźń. ~!@#$%^ &*()_+\n", whyItFailed);
