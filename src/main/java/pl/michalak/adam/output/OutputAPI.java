@@ -1,11 +1,14 @@
 package pl.michalak.adam.output;
 
+import pl.michalak.adam.components.ComponentsAPI;
+
 import java.io.PrintStream;
 
 public class OutputAPI {
     private final ConsolePrinter consolePrinter;
     private final MenuPrinter menuPrinter;
     private final ErrorPrinter errorPrinter;
+    private BoardPrinter boardPrinter;
 
     public OutputAPI(PrintStream printStream){
         this.consolePrinter = new ConsolePrinter(printStream);
@@ -43,4 +46,8 @@ public class OutputAPI {
     public void reloadResourceBundleAfterLocaleChange(){
         consolePrinter.reloadResourceBundle();
     }
+
+    public void setBoardPrinter(ComponentsAPI componentsAPI) { this.boardPrinter = new BoardPrinter(componentsAPI);}
+
+    public void printBoard() { consolePrinter.print(boardPrinter.boardToString()); }
 }

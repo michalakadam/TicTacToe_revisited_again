@@ -37,4 +37,7 @@ class Board {
 
     }
 
+    public List<Symbol> getWholeBoard() {
+        return this.piecesOnBoard;
+    }
 }

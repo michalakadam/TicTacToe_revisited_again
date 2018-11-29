@@ -14,12 +14,16 @@ class PlayersList {
     }
 
     public void setPlayerName(int playerNumber, String playerName) throws PlayersNamesAreTheSameException {
-        if(playerNumber == 2 && players.get(0).getName().equals(playerName))
+        if(playerNumber == 2 && players.get(0).getPlayerName().equals(playerName))
             throw new PlayersNamesAreTheSameException("players' names are exactly the same");
-        else if(playerNumber == 1 && players.get(1).getName().equals(playerName))
+        else if(playerNumber == 1 && players.get(1).getPlayerName().equals(playerName))
             throw new PlayersNamesAreTheSameException("players' names are exactly the same");
         else
             players.get(playerNumber-1).setPlayerName(playerName);
+    }
+
+    public String getPlayerName(int playerNumber) {
+        return players.get(playerNumber-1).getPlayerName();
     }
 }
 

@@ -1,5 +1,7 @@
 package pl.michalak.adam.components;
 
+import java.util.List;
+
 public class ComponentsAPI {
     private final Board board;
 
@@ -21,5 +23,9 @@ public class ComponentsAPI {
 
     public int getNumberOfSlotsOnBoard(){
         return board.getNumberOfSlots();
+    }
+
+    public List<Symbol> getBoardWithPieces(){
+        return board.getWholeBoard();
     }
 }

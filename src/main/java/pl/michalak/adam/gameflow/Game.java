@@ -1,5 +1,6 @@
 package pl.michalak.adam.gameflow;
 
+import pl.michalak.adam.components.ComponentsAPI;
 import pl.michalak.adam.input.InputAPI;
 import pl.michalak.adam.output.OutputAPI;
 import pl.michalak.adam.settings.PropertiesAPI;

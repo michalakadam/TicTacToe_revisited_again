@@ -12,4 +12,8 @@ public class PlayersAPI {
     public void setPlayerName(int playerNumber, String playerName) throws PlayersNamesAreTheSameException {
         playersList.setPlayerName(playerNumber, playerName);
     }
+
+    public String getPlayerName(int playerNumber){
+        return playersList.getPlayerName(playerNumber);
+    }
 }
