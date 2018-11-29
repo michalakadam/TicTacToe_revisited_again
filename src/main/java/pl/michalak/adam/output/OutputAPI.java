@@ -29,11 +29,13 @@ public class OutputAPI {
         MenuPrinter.printMainMenu();
     }
 
+    public void printPlayersNamesMenu() { MenuPrinter.printPlayersNamesMenu(); }
+    public void printGameSettingsMenu() { MenuPrinter.printGameSettingsMenu(); }
+
     public void printLanguageMenu() { MenuPrinter.printLanguageMenu();}
 
     public void reloadResourceBundleAfterLocaleChange(){
         consolePrinter.reloadResourceBundle();
     }
 
-    public void printGameSettingsMenu() { MenuPrinter.printGameSettingsMenu(); }
 }

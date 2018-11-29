@@ -6,10 +6,12 @@ public class InputAPI {
     InputReader inputReader;
     IntInputValidator intInputValidator;
     StringInputValidator stringInputValidator;
+    StringInputProvider stringInputProvider;
 
     public InputAPI(OutputAPI outputAPI){
         this.inputReader = new InputReader(System.in);
         this.stringInputValidator = new StringInputValidator(outputAPI, inputReader);
+        this.stringInputProvider = new StringInputProvider(outputAPI, inputReader);
         this.intInputValidator = new IntInputValidator(outputAPI, inputReader, stringInputValidator);
     }
 
@@ -19,6 +21,10 @@ public class InputAPI {
 
     public String getStringInputFromPlayer(String message, String option1, String option2){
         return stringInputValidator.getStringInputFromPlayer(message, option1, option2);
+    }
+
+    public String getStringInputFromPlayerWithNoStringsAttached(String message){
+        return stringInputProvider.getStringFromUser(message);
     }
 
 }

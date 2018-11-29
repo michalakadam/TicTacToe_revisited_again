@@ -3,16 +3,19 @@ package pl.michalak.adam.gameflow;
 import pl.michalak.adam.input.InputAPI;
 import pl.michalak.adam.output.OutputAPI;
 import pl.michalak.adam.settings.PropertiesAPI;
+import pl.michalak.adam.users.PlayersAPI;
 
 class Intro {
-    OutputAPI outputAPI;
-    PropertiesAPI propertiesAPI;
-    InputAPI inputAPI;
+    private final OutputAPI outputAPI;
+    private final PropertiesAPI propertiesAPI;
+    private final InputAPI inputAPI;
+    private final PlayersAPI playersAPI;
 
-    Intro(OutputAPI outputAPI, PropertiesAPI propertiesAPI, InputAPI inputAPI) {
+    Intro(OutputAPI outputAPI, PropertiesAPI propertiesAPI, InputAPI inputAPI, PlayersAPI playersAPI) {
         this.outputAPI = outputAPI;
         this.propertiesAPI = propertiesAPI;
         this.inputAPI = inputAPI;
+        this.playersAPI = playersAPI;
     }
     void beforeGame(){
         mainMenu();
@@ -21,11 +24,11 @@ class Intro {
     void mainMenu(){
         outputAPI.printMainMenu();
         int mainMenuDecision = inputAPI.getIntInputFromPlayer("decideInMainMenu", 1, 4);
-        /*if(mainMenuDecision == 2)
+        if(mainMenuDecision == 2)
             namePlayers();
-        else */if(mainMenuDecision == 3)
+        else if(mainMenuDecision == 3)
             changeSettings();
-        if(mainMenuDecision == 4)
+        else if(mainMenuDecision == 4)
             changeLanguage();
     }
 
@@ -56,6 +59,20 @@ class Intro {
             int maxWinningCondition = propertiesAPI.getBoardSizeForThisGame();
             int customWinningCondition = inputAPI.getIntInputFromPlayer("getWinningCondition", 2, maxWinningCondition);
             propertiesAPI.setWinningConditionForThisGame(customWinningCondition);
+        }
+        mainMenu();
+    }
+
+    void namePlayers(){
+        outputAPI.printPlayersNamesMenu();
+        int playersNamesMenuDecision = inputAPI.getIntInputFromPlayer("decideInPlayersNamesMenu", 1, 3);
+        if(playersNamesMenuDecision == 1){
+            String playerOneName = inputAPI.getStringInputFromPlayerWithNoStringsAttached("giveNameOfFirstPlayer");
+            playersAPI.setPlayerName(playersNamesMenuDecision, playerOneName);
+        }
+        else if(playersNamesMenuDecision == 2){
+            String playerTwoName = inputAPI.getStringInputFromPlayerWithNoStringsAttached("giveNameOfSecondPlayer");
+            playersAPI.setPlayerName(playersNamesMenuDecision, playerTwoName);
         }
         mainMenu();
     }

@@ -33,4 +33,13 @@ class MenuPrinter {
         consolePrinter.printFromResourceBundleAndAddNextLine("goBackToMainMenu");
         consolePrinter.print("\n");
     }
+
+    public void printPlayersNamesMenu() {
+        consolePrinter.print("\n");
+        consolePrinter.printFromResourceBundleAndAddNextLine("playersNamesMenuTitle");
+        consolePrinter.printFromResourceBundleAndAddNextLine("playerOneName");
+        consolePrinter.printFromResourceBundleAndAddNextLine("playerTwoName");
+        consolePrinter.printFromResourceBundleAndAddNextLine("goBackToMainMenu");
+        consolePrinter.print("\n");
+    }
 }

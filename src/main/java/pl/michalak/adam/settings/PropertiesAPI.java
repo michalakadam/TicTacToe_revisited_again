@@ -23,4 +23,6 @@ public class PropertiesAPI {
     public void setBoardSizeForThisGame(int boardSizeValue) { boardSize.setBoardSize(boardSizeValue);}
 
     public int getBoardSizeForThisGame(){ return boardSize.getBoardSize();}
+
+
 }
