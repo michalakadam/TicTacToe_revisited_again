@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import pl.michalak.adam.exceptions.SlotIsFilledException;
 
 import static org.testng.Assert.assertEquals;
 
@@ -44,7 +45,12 @@ public class BoardTest {
         //given
         String whyItFailed = "Symbol at the given slot is not X or equals method failed";
         //when
-        board.addSymbolAtSlot(index, Symbol.X);
+        try{
+            board.addSymbolAtSlot(index, Symbol.X);
+        }
+        catch(SlotIsFilledException e){
+            e.printStackTrace();
+        }
         //then
         assertEquals(board.getSymbol(index), Symbol.X, whyItFailed);
     }
@@ -54,7 +60,12 @@ public class BoardTest {
         //given
         String whyItFailed = "Symbol at the given slot is not O or equals method failed";
         //when
-        board.addSymbolAtSlot(index, Symbol.O);
+        try{
+            board.addSymbolAtSlot(index, Symbol.O);
+        }
+        catch(SlotIsFilledException e){
+            e.printStackTrace();
+        }
         //then
         assertEquals(board.getSymbol(index), Symbol.O, whyItFailed);
     }
@@ -64,8 +75,13 @@ public class BoardTest {
         //given
         String whyItFailed = "Piece was added at slot even though it was occupied";
         //when
-        board.addSymbolAtSlot(0, Symbol.O);
-        board.addSymbolAtSlot(0, Symbol.X);
+        try{
+            board.addSymbolAtSlot(0, Symbol.O);
+            board.addSymbolAtSlot(0, Symbol.X);
+        }
+        catch(SlotIsFilledException e){
+            e.printStackTrace();
+        }
         //then
         assertEquals(board.getSymbol(0), Symbol.O, whyItFailed);
     }

@@ -1,5 +1,7 @@
 package pl.michalak.adam.components;
 
+import pl.michalak.adam.exceptions.SlotIsFilledException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +16,11 @@ class Board {
         }
     }
 
-    void addSymbolAtSlot(int index, Symbol symbol) {
+    void addSymbolAtSlot(int index, Symbol symbol) throws SlotIsFilledException {
         if (canSymbolBeAddedAtSlot(index))
             piecesOnBoard.set(index, symbol);
+        else
+            throw new SlotIsFilledException("This slot is already occupied!");
     }
 
     private boolean canSymbolBeAddedAtSlot(int index) {

@@ -1,9 +1,11 @@
 package pl.michalak.adam.assessment;
 
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pl.michalak.adam.components.ComponentsAPI;
 import pl.michalak.adam.components.Symbol;
+import pl.michalak.adam.exceptions.SlotIsFilledException;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
@@ -15,7 +17,7 @@ public class WinCheckerTest {
     @DataProvider
     public static Object[] columnsStartingIndexes(){
         return new Object[]{
-                0, 1, 2
+                1, 2, 3
         };
     }
 
@@ -39,9 +41,13 @@ public class WinCheckerTest {
         int winningCondition = 3;
         winChecker = new WinChecker(componentsAPI, winningCondition);
         //when
-        componentsAPI.addSymbolOnBoardAtSlot(columnStartingIndex, Symbol.X);
-        componentsAPI.addSymbolOnBoardAtSlot(columnStartingIndex+componentsAPI.getBoardSideSize(), Symbol.O);
-        componentsAPI.addSymbolOnBoardAtSlot(columnStartingIndex+2*componentsAPI.getBoardSideSize(), Symbol.X);
+        try {
+            componentsAPI.addSymbolOnBoardAtSlot(columnStartingIndex, Symbol.X);
+            componentsAPI.addSymbolOnBoardAtSlot(columnStartingIndex+componentsAPI.getBoardSideSize(), Symbol.O);
+            componentsAPI.addSymbolOnBoardAtSlot(columnStartingIndex+2*componentsAPI.getBoardSideSize(), Symbol.X);
+        } catch (SlotIsFilledException e) {
+            e.printStackTrace();
+        }
         //then
         assertFalse(winChecker.checkWin(columnStartingIndex, Symbol.X), whyItFailed);
     }
@@ -55,17 +61,22 @@ public class WinCheckerTest {
         int winningCondition = 3;
         winChecker = new WinChecker(componentsAPI, winningCondition);
         //when
-        componentsAPI.addSymbolOnBoardAtSlot(columnStartingIndex, Symbol.X);
-        componentsAPI.addSymbolOnBoardAtSlot(columnStartingIndex+componentsAPI.getBoardSideSize(), Symbol.X);
-        componentsAPI.addSymbolOnBoardAtSlot(columnStartingIndex+2*componentsAPI.getBoardSideSize(), Symbol.X);
+        try {
+            componentsAPI.addSymbolOnBoardAtSlot(columnStartingIndex, Symbol.X);
+            componentsAPI.addSymbolOnBoardAtSlot(columnStartingIndex+componentsAPI.getBoardSideSize(), Symbol.O);
+            componentsAPI.addSymbolOnBoardAtSlot(columnStartingIndex+2*componentsAPI.getBoardSideSize(), Symbol.X);
+        } catch (SlotIsFilledException e) {
+            e.printStackTrace();
+        }
         //then
-        assertTrue(winChecker.checkWin(columnStartingIndex, Symbol.X), whyItFailed);
+
+        assertTrue(winChecker.checkWin(columnStartingIndex-1, Symbol.X), whyItFailed);
     }
     
     @DataProvider
     public static Object[] rowsStartingIndexes(){
         return new Object[]{
-                0, 6, 12
+                1, 7, 13
         };
     }
     
@@ -78,11 +89,16 @@ public class WinCheckerTest {
         int winningCondition = 3;
         winChecker = new WinChecker(componentsAPI, winningCondition);
         //when
-        componentsAPI.addSymbolOnBoardAtSlot(rowStartingIndex, Symbol.O);
-        componentsAPI.addSymbolOnBoardAtSlot(rowStartingIndex+1, Symbol.O);
-        componentsAPI.addSymbolOnBoardAtSlot(rowStartingIndex+2, Symbol.X);
+        try {
+            componentsAPI.addSymbolOnBoardAtSlot(rowStartingIndex, Symbol.O);
+            componentsAPI.addSymbolOnBoardAtSlot(rowStartingIndex + 1, Symbol.O);
+            componentsAPI.addSymbolOnBoardAtSlot(rowStartingIndex + 2, Symbol.X);
+        }
+        catch(SlotIsFilledException e){
+            e.printStackTrace();
+        }
         //then
-        assertFalse(winChecker.checkWin(rowStartingIndex, Symbol.O), whyItFailed);
+        assertFalse(winChecker.checkWin(rowStartingIndex-1, Symbol.O), whyItFailed);
     }
 
     @Test(dataProvider = "rowsStartingIndexes")
@@ -94,12 +110,17 @@ public class WinCheckerTest {
         int winningCondition = 4;
         winChecker = new WinChecker(componentsAPI, winningCondition);
         //when
-        componentsAPI.addSymbolOnBoardAtSlot(rowStartingIndex, Symbol.O);
-        componentsAPI.addSymbolOnBoardAtSlot(rowStartingIndex+1, Symbol.O);
-        componentsAPI.addSymbolOnBoardAtSlot(rowStartingIndex+2, Symbol.O);
-        componentsAPI.addSymbolOnBoardAtSlot(rowStartingIndex+3, Symbol.O);
+        try{
+            componentsAPI.addSymbolOnBoardAtSlot(rowStartingIndex, Symbol.O);
+            componentsAPI.addSymbolOnBoardAtSlot(rowStartingIndex+1, Symbol.O);
+            componentsAPI.addSymbolOnBoardAtSlot(rowStartingIndex+2, Symbol.O);
+            componentsAPI.addSymbolOnBoardAtSlot(rowStartingIndex+3, Symbol.O);
+        }
+        catch(SlotIsFilledException e){
+            e.printStackTrace();
+        }
         //then
-        assertTrue(winChecker.checkWin(rowStartingIndex, Symbol.O), whyItFailed);
+        assertTrue(winChecker.checkWin(rowStartingIndex-1, Symbol.O), whyItFailed);
     }
 
     @Test
@@ -110,9 +131,14 @@ public class WinCheckerTest {
         componentsAPI = new ComponentsAPI(boardSize);
         winChecker = new WinChecker(componentsAPI, boardSize);
         //when
-        componentsAPI.addSymbolOnBoardAtSlot(0, Symbol.X);
-        componentsAPI.addSymbolOnBoardAtSlot(4, Symbol.O);
-        componentsAPI.addSymbolOnBoardAtSlot(8, Symbol.X);
+        try{
+            componentsAPI.addSymbolOnBoardAtSlot(1, Symbol.X);
+            componentsAPI.addSymbolOnBoardAtSlot(5, Symbol.O);
+            componentsAPI.addSymbolOnBoardAtSlot(9, Symbol.X);
+        }
+        catch(SlotIsFilledException e){
+            e.printStackTrace();
+        }
         //then
         assertFalse(winChecker.checkWin(4, Symbol.X), whyItFailed);
     }
@@ -126,10 +152,15 @@ public class WinCheckerTest {
         int winningCondition = 4;
         winChecker = new WinChecker(componentsAPI, winningCondition);
         //when
-        componentsAPI.addSymbolOnBoardAtSlot(0, Symbol.X);
-        componentsAPI.addSymbolOnBoardAtSlot(8, Symbol.X);
-        componentsAPI.addSymbolOnBoardAtSlot(16, Symbol.X);
-        componentsAPI.addSymbolOnBoardAtSlot(24, Symbol.X);
+        try{
+            componentsAPI.addSymbolOnBoardAtSlot(1, Symbol.X);
+            componentsAPI.addSymbolOnBoardAtSlot(9, Symbol.X);
+            componentsAPI.addSymbolOnBoardAtSlot(17, Symbol.X);
+            componentsAPI.addSymbolOnBoardAtSlot(25, Symbol.X);
+        }
+        catch(SlotIsFilledException e){
+            e.printStackTrace();
+        }
         //then
         assertTrue(winChecker.checkWin(16, Symbol.X), whyItFailed);
     }
@@ -143,11 +174,16 @@ public class WinCheckerTest {
         int winningCondition = 5;
         winChecker = new WinChecker(componentsAPI, winningCondition);
         //when
-        componentsAPI.addSymbolOnBoardAtSlot(10, Symbol.X);
-        componentsAPI.addSymbolOnBoardAtSlot(18, Symbol.X);
-        componentsAPI.addSymbolOnBoardAtSlot(26, Symbol.X);
-        componentsAPI.addSymbolOnBoardAtSlot(34, Symbol.X);
-        componentsAPI.addSymbolOnBoardAtSlot(42, Symbol.X);
+        try{
+            componentsAPI.addSymbolOnBoardAtSlot(11, Symbol.X);
+            componentsAPI.addSymbolOnBoardAtSlot(19, Symbol.X);
+            componentsAPI.addSymbolOnBoardAtSlot(27, Symbol.X);
+            componentsAPI.addSymbolOnBoardAtSlot(35, Symbol.X);
+            componentsAPI.addSymbolOnBoardAtSlot(43, Symbol.X);
+        }
+        catch(SlotIsFilledException e){
+            e.printStackTrace();
+        }
         //then
         assertTrue(winChecker.checkWin(26, Symbol.X), whyItFailed);
     }
@@ -160,9 +196,14 @@ public class WinCheckerTest {
         componentsAPI = new ComponentsAPI(boardSize);
         winChecker = new WinChecker(componentsAPI, boardSize);
         //when
-        componentsAPI.addSymbolOnBoardAtSlot(2, Symbol.X);
-        componentsAPI.addSymbolOnBoardAtSlot(4, Symbol.O);
-        componentsAPI.addSymbolOnBoardAtSlot(6, Symbol.O);
+        try{
+            componentsAPI.addSymbolOnBoardAtSlot(3, Symbol.X);
+            componentsAPI.addSymbolOnBoardAtSlot(5, Symbol.O);
+            componentsAPI.addSymbolOnBoardAtSlot(7, Symbol.O);
+        }
+        catch(SlotIsFilledException e){
+            e.printStackTrace();
+        }
         //then
         assertFalse(winChecker.checkWin(4, Symbol.X), whyItFailed);
     }
@@ -175,9 +216,14 @@ public class WinCheckerTest {
         componentsAPI = new ComponentsAPI(boardSize);
         winChecker = new WinChecker(componentsAPI, boardSize);
         //when
-        componentsAPI.addSymbolOnBoardAtSlot(2, Symbol.O);
-        componentsAPI.addSymbolOnBoardAtSlot(4, Symbol.O);
-        componentsAPI.addSymbolOnBoardAtSlot(6, Symbol.O);
+        try{
+            componentsAPI.addSymbolOnBoardAtSlot(3, Symbol.O);
+            componentsAPI.addSymbolOnBoardAtSlot(5, Symbol.O);
+            componentsAPI.addSymbolOnBoardAtSlot(7, Symbol.O);
+        }
+        catch(SlotIsFilledException e){
+            e.printStackTrace();
+        }
         //then
         assertTrue(winChecker.checkWin(6, Symbol.O), whyItFailed);
     }
@@ -191,12 +237,38 @@ public class WinCheckerTest {
         int winningCondition = 4;
         winChecker = new WinChecker(componentsAPI, winningCondition);
         //when
-        componentsAPI.addSymbolOnBoardAtSlot(6, Symbol.O);
-        componentsAPI.addSymbolOnBoardAtSlot(14, Symbol.O);
-        componentsAPI.addSymbolOnBoardAtSlot(22, Symbol.O);
-        componentsAPI.addSymbolOnBoardAtSlot(30, Symbol.O);
+        try{
+            componentsAPI.addSymbolOnBoardAtSlot(7, Symbol.O);
+            componentsAPI.addSymbolOnBoardAtSlot(15, Symbol.O);
+            componentsAPI.addSymbolOnBoardAtSlot(23, Symbol.O);
+            componentsAPI.addSymbolOnBoardAtSlot(31, Symbol.O);
+        }
+        catch(SlotIsFilledException e){
+            e.printStackTrace();
+        }
         //then
         assertTrue(winChecker.checkWin(30, Symbol.O), whyItFailed);
+    }
+
+    @Test
+    public void consecutiveSlotsFilledShouldNotWin(){
+        //given
+        String whyItFailed = "wasn't implemented: consecutiveSlotsFilledShouldNotWin";
+        int boardSize = 3;
+        componentsAPI = new ComponentsAPI(boardSize);
+        int winningCondition = 3;
+        winChecker = new WinChecker(componentsAPI, winningCondition);
+        //when
+        for(int i = 1; i <= 7; i++) {
+            try{
+                componentsAPI.addSymbolOnBoardAtSlot(i, i%2==0 ? Symbol.X : Symbol.O);
+            }
+            catch(SlotIsFilledException e){
+                e.printStackTrace();
+            }
+        }
+        //then
+        assertTrue(winChecker.checkWin(0, Symbol.O), whyItFailed);
     }
 
 }

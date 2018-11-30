@@ -1,5 +1,7 @@
 package pl.michalak.adam.components;
 
+import pl.michalak.adam.exceptions.SlotIsFilledException;
+
 import java.util.List;
 
 public class ComponentsAPI {
@@ -11,7 +13,7 @@ public class ComponentsAPI {
         this.lastMove = 0;
     }
 
-    public void addSymbolOnBoardAtSlot(int index, Symbol symbol){
+    public void addSymbolOnBoardAtSlot(int index, Symbol symbol) throws SlotIsFilledException {
         board.addSymbolAtSlot(index-1, symbol);
         saveLastMove(index-1);
     }

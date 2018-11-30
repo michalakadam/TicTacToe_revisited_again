@@ -2,6 +2,7 @@ package pl.michalak.adam.programflow;
 
 import pl.michalak.adam.components.ComponentsAPI;
 import pl.michalak.adam.components.Symbol;
+import pl.michalak.adam.exceptions.SlotIsFilledException;
 import pl.michalak.adam.input.InputAPI;
 import pl.michalak.adam.output.OutputAPI;
 import pl.michalak.adam.settings.PropertiesAPI;
@@ -47,8 +48,18 @@ class RoundFlow {
     private void nextTurn(){
         outputAPI.printBoard();
         round.increaseTurnNumber();
+        playerAddsSymbolToBoard();
+    }
+
+    private void playerAddsSymbolToBoard(){
         outputAPI.print(getPlayersNameInThisTurn(getPlayersNumberInThisTurn())+", ");
-        componentsAPI.addSymbolOnBoardAtSlot(getIndexFromPlayer(), getPlayersSymbolInThisTurn(getPlayersNumberInThisTurn()));
+        try {
+            componentsAPI.addSymbolOnBoardAtSlot(getIndexFromPlayer(), getPlayersSymbolInThisTurn(getPlayersNumberInThisTurn()));
+        }
+        catch(SlotIsFilledException exception){
+            outputAPI.printFromResourceBundleAndAddNextLine("slotFilledError");
+            playerAddsSymbolToBoard();
+        }
     }
 
     private int getPlayersNumberInThisTurn(){
