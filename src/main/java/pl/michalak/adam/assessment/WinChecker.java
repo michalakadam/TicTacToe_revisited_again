@@ -22,7 +22,15 @@ class WinChecker {
         else if(countConsecutiveSymbolsInFirstDiagonal(index%(componentsAPI.getBoardSideSize()+1), symbol) == this.winningCondition) return true;
         //index%(componentsAPI.getBoardSideSize()-1) guarantees that first diagonal is checked from the beginning.
         //If diagonal is main diagonal therefore index%(componentsAPI.getBoardSideSize()-1) == 0 and checking will begin at index = 0 which does not belong to this diagonal.
-        else if(countConsecutiveSymbolsInSecondDiagonal((index%(componentsAPI.getBoardSideSize()-1)==0) ? componentsAPI.getBoardSideSize()-1 : index%(componentsAPI.getBoardSideSize()-1), symbol) == this.winningCondition) return true;
+        else{
+            if (index % (componentsAPI.getBoardSideSize() - 1) == 0 || componentsAPI.getBoardSideSize() == 3) {
+                if (countConsecutiveSymbolsInSecondDiagonal(componentsAPI.getBoardSideSize() - 1, symbol) == winningCondition)
+                    return true;
+            } else {
+                if (countConsecutiveSymbolsInSecondDiagonal(index % (componentsAPI.getBoardSideSize() - 1), symbol) == this.winningCondition)
+                    return true;
+            }
+        }
         return false;
     }
 
@@ -47,7 +55,7 @@ class WinChecker {
     //first diagonal is one going from up-left side of the componentsAPI to bottom-right
     private int countConsecutiveSymbolsInFirstDiagonal(int index, Symbol symbol) {
         //index+componentsAPI.getBoardSideSize()+1 is a location of next slot in the diagonal, eg. for 3x3 componentsAPI 0, 4, 8
-        if(index+componentsAPI.getBoardSideSize()+1 >= componentsAPI.getNumberOfSlotsOnBoard())
+        if(index+componentsAPI.getBoardSideSize() +1 >= componentsAPI.getNumberOfSlotsOnBoard())
             return recursionBaseCaseResult(index, symbol);
         if(componentsAPI.getSymbolFromSlot(index).equals(symbol))
             return 1 + countConsecutiveSymbolsInFirstDiagonal(index+componentsAPI.getBoardSideSize()+1, symbol);

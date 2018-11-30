@@ -60,7 +60,7 @@ class GameFlow {
     }
 
     private void sumUpGame() {
-        if(roundFlow.wasItADraw())
+        if(playersAPI.getPlayersScore(1) == playersAPI.getPlayersScore(2))
             outputAPI.printFromResourceBundleAndAddNextLine("drawAnnouncement");
         else {
             outputAPI.print(playersAPI.getPlayerName(roundFlow.determineTheWinner())+" ");

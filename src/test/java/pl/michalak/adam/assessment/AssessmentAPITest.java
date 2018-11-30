@@ -258,16 +258,17 @@ public class AssessmentAPITest {
         int winningCondition = 3;
         assessmentAPI = new AssessmentAPI(componentsAPI, winningCondition);
         //when
-        for(int i = 1; i <= 7; i++) {
-            try{
-                componentsAPI.addSymbolOnBoardAtSlot(i, i%2==0 ? Symbol.X : Symbol.O);
-            }
-            catch(SlotIsFilledException e){
-                e.printStackTrace();
-            }
+        try{
+            componentsAPI.addSymbolOnBoardAtSlot(1, Symbol.X);
+            componentsAPI.addSymbolOnBoardAtSlot(5, Symbol.X);
+            componentsAPI.addSymbolOnBoardAtSlot(3, Symbol.X);
+
+        }
+        catch(SlotIsFilledException e){
+            e.printStackTrace();
         }
         //then
-        assertTrue(assessmentAPI.checkForWinner(0, Symbol.O), whyItFailed);
+        assertFalse(assessmentAPI.checkForWinner(2, Symbol.X), whyItFailed);
     }
 
 }

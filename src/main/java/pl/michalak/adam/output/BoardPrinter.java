@@ -26,7 +26,10 @@ class BoardPrinter {
                 out.append("\n");
             }
             if (componentsAPI.getSymbolFromSlot(slot).equals(Symbol.EMPTY)) {
-                out.append("  " + (slot+1) + " ");
+                if(slot < 9)
+                    out.append("  " + (slot+1) + " ");
+                else
+                    out.append(" " + (slot+1) + " ");
             }
             else {
                 out.append("  ").append(componentsAPI.getSymbolFromSlot(slot)).append(" ");
