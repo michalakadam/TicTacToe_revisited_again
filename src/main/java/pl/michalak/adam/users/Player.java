@@ -32,4 +32,8 @@ class Player {
     int getPlayersScore(){
         return this.score;
     }
+
+    public void resetPoints() {
+        this.score = 0;
+    }
 }

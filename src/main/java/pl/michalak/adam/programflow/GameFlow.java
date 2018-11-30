@@ -25,6 +25,7 @@ class GameFlow {
         boolean doYouWantToPlayAnotherGame = true;
         while(doYouWantToPlayAnotherGame) {
             this.game = new Game();
+            playersAPI.resetPoints();
             boolean doYouWantToPlayAnotherRound = true;
             while (game.getRoundNumber() < 3 && doYouWantToPlayAnotherRound) {
                 game.beginNewRound();

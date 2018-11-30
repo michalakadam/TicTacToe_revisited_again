@@ -66,4 +66,8 @@ public class PlayersAPI {
     public int getPlayersScore(int playerNumber){
         return playersList.getPlayerScore(playerNumber);
     }
+
+    public void resetPoints() {
+        playersList.resetPlayersPoints();
+    }
 }

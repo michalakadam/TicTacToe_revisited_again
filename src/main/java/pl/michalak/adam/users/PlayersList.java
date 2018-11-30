@@ -38,5 +38,10 @@ class PlayersList {
     int getPlayerScore(int playerNumber){
         return players.get(playerNumber-1).getPlayersScore();
     }
+
+    public void resetPlayersPoints() {
+        players.get(0).resetPoints();
+        players.get(1).resetPoints();
+    }
 }
 
