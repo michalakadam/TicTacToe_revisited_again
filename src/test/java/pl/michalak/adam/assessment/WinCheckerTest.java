@@ -63,7 +63,7 @@ public class WinCheckerTest {
         //when
         try {
             componentsAPI.addSymbolOnBoardAtSlot(columnStartingIndex, Symbol.X);
-            componentsAPI.addSymbolOnBoardAtSlot(columnStartingIndex+componentsAPI.getBoardSideSize(), Symbol.O);
+            componentsAPI.addSymbolOnBoardAtSlot(columnStartingIndex+componentsAPI.getBoardSideSize(), Symbol.X);
             componentsAPI.addSymbolOnBoardAtSlot(columnStartingIndex+2*componentsAPI.getBoardSideSize(), Symbol.X);
         } catch (SlotIsFilledException e) {
             e.printStackTrace();
