@@ -1,6 +1,5 @@
 package pl.michalak.adam.assessment;
 
-import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pl.michalak.adam.components.ComponentsAPI;
@@ -10,9 +9,9 @@ import pl.michalak.adam.exceptions.SlotIsFilledException;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
-public class WinCheckerTest {
+public class AssessmentAPITest {
     private ComponentsAPI componentsAPI;
-    private WinChecker winChecker;
+    private AssessmentAPI assessmentAPI;
 
     @DataProvider
     public static Object[] columnsStartingIndexes(){
@@ -27,19 +26,19 @@ public class WinCheckerTest {
         String whyItFailed = "apparently win checker returned true even though componentsAPI is empty";
         int boardSize = 7;
         componentsAPI = new ComponentsAPI(boardSize);
-        winChecker = new WinChecker(componentsAPI, boardSize);
+        assessmentAPI = new AssessmentAPI(componentsAPI, boardSize);
         //then
-        assertFalse(winChecker.checkWin(columnStartingIndex, Symbol.X), whyItFailed);
+        assertFalse(assessmentAPI.checkForWinner(columnStartingIndex, Symbol.X), whyItFailed);
     }
 
     @Test (dataProvider = "columnsStartingIndexes")
     public void almostFullColumnShouldNotWin(int columnStartingIndex){
         //given
-        String whyItFailed = "checkWin found not full column to be sufficient winning condition";
+        String whyItFailed = "checkForWinner found not full column to be sufficient winning condition";
         int boardSize = 4;
         componentsAPI = new ComponentsAPI(boardSize);
         int winningCondition = 3;
-        winChecker = new WinChecker(componentsAPI, winningCondition);
+        assessmentAPI = new AssessmentAPI(componentsAPI, winningCondition);
         //when
         try {
             componentsAPI.addSymbolOnBoardAtSlot(columnStartingIndex, Symbol.X);
@@ -49,17 +48,17 @@ public class WinCheckerTest {
             e.printStackTrace();
         }
         //then
-        assertFalse(winChecker.checkWin(columnStartingIndex, Symbol.X), whyItFailed);
+        assertFalse(assessmentAPI.checkForWinner(columnStartingIndex, Symbol.X), whyItFailed);
     }
 
     @Test (dataProvider = "columnsStartingIndexes")
     public void fullColumnShouldWin(int columnStartingIndex){
         //given
-        String whyItFailed = "checkWin found full column to be insufficient winning condition";
+        String whyItFailed = "checkForWinner found full column to be insufficient winning condition";
         int boardSize = 4;
         componentsAPI = new ComponentsAPI(boardSize);
         int winningCondition = 3;
-        winChecker = new WinChecker(componentsAPI, winningCondition);
+        assessmentAPI = new AssessmentAPI(componentsAPI, winningCondition);
         //when
         try {
             componentsAPI.addSymbolOnBoardAtSlot(columnStartingIndex, Symbol.X);
@@ -70,24 +69,24 @@ public class WinCheckerTest {
         }
         //then
 
-        assertTrue(winChecker.checkWin(columnStartingIndex-1, Symbol.X), whyItFailed);
+        assertTrue(assessmentAPI.checkForWinner(columnStartingIndex-1, Symbol.X), whyItFailed);
     }
-    
+
     @DataProvider
     public static Object[] rowsStartingIndexes(){
         return new Object[]{
                 1, 7, 13
         };
     }
-    
+
     @Test(dataProvider = "rowsStartingIndexes")
     public void rowAlmostFullShouldNotWin(int rowStartingIndex){
         //given
-        String whyItFailed = "checkWin found not full raw to be sufficient winning condition";
+        String whyItFailed = "checkForWinner found not full raw to be sufficient winning condition";
         int boardSize = 6;
         componentsAPI = new ComponentsAPI(boardSize);
         int winningCondition = 3;
-        winChecker = new WinChecker(componentsAPI, winningCondition);
+        assessmentAPI = new AssessmentAPI(componentsAPI, winningCondition);
         //when
         try {
             componentsAPI.addSymbolOnBoardAtSlot(rowStartingIndex, Symbol.O);
@@ -98,17 +97,17 @@ public class WinCheckerTest {
             e.printStackTrace();
         }
         //then
-        assertFalse(winChecker.checkWin(rowStartingIndex-1, Symbol.O), whyItFailed);
+        assertFalse(assessmentAPI.checkForWinner(rowStartingIndex-1, Symbol.O), whyItFailed);
     }
 
     @Test(dataProvider = "rowsStartingIndexes")
     public void fullRowShouldWin(int rowStartingIndex){
         //given
-        String whyItFailed = "checkWin found full raw to be insufficient winning condition";
+        String whyItFailed = "checkForWinner found full raw to be insufficient winning condition";
         int boardSize = 6;
         componentsAPI = new ComponentsAPI(boardSize);
         int winningCondition = 4;
-        winChecker = new WinChecker(componentsAPI, winningCondition);
+        assessmentAPI = new AssessmentAPI(componentsAPI, winningCondition);
         //when
         try{
             componentsAPI.addSymbolOnBoardAtSlot(rowStartingIndex, Symbol.O);
@@ -120,16 +119,16 @@ public class WinCheckerTest {
             e.printStackTrace();
         }
         //then
-        assertTrue(winChecker.checkWin(rowStartingIndex-1, Symbol.O), whyItFailed);
+        assertTrue(assessmentAPI.checkForWinner(rowStartingIndex-1, Symbol.O), whyItFailed);
     }
 
     @Test
     public void firstDiagonalNotFullShouldNotWin(){
         //given
-        String whyItFailed = "checkWin found not full first diagonal to be sufficient winning condition";
+        String whyItFailed = "checkForWinner found not full first diagonal to be sufficient winning condition";
         int boardSize = 3;
         componentsAPI = new ComponentsAPI(boardSize);
-        winChecker = new WinChecker(componentsAPI, boardSize);
+        assessmentAPI = new AssessmentAPI(componentsAPI, boardSize);
         //when
         try{
             componentsAPI.addSymbolOnBoardAtSlot(1, Symbol.X);
@@ -140,17 +139,17 @@ public class WinCheckerTest {
             e.printStackTrace();
         }
         //then
-        assertFalse(winChecker.checkWin(4, Symbol.X), whyItFailed);
+        assertFalse(assessmentAPI.checkForWinner(4, Symbol.X), whyItFailed);
     }
 
     @Test
     public void firstDiagonalFullShouldWin(){
         //given
-        String whyItFailed = "checkWin found full first diagonal not to be sufficient winning condition";
+        String whyItFailed = "checkForWinner found full first diagonal not to be sufficient winning condition";
         int boardSize = 7;
         componentsAPI = new ComponentsAPI(boardSize);
         int winningCondition = 4;
-        winChecker = new WinChecker(componentsAPI, winningCondition);
+        assessmentAPI = new AssessmentAPI(componentsAPI, winningCondition);
         //when
         try{
             componentsAPI.addSymbolOnBoardAtSlot(1, Symbol.X);
@@ -162,17 +161,17 @@ public class WinCheckerTest {
             e.printStackTrace();
         }
         //then
-        assertTrue(winChecker.checkWin(16, Symbol.X), whyItFailed);
+        assertTrue(assessmentAPI.checkForWinner(16, Symbol.X), whyItFailed);
     }
 
     @Test
     public void nonStandardFirstDiagonalSatisfyingWinningConditionShouldWin(){
         //given
-        String whyItFailed = "checkWin found sufficiently full first diagonal not to be sufficient winning condition";
+        String whyItFailed = "checkForWinner found sufficiently full first diagonal not to be sufficient winning condition";
         int boardSize = 7;
         componentsAPI = new ComponentsAPI(boardSize);
         int winningCondition = 5;
-        winChecker = new WinChecker(componentsAPI, winningCondition);
+        assessmentAPI = new AssessmentAPI(componentsAPI, winningCondition);
         //when
         try{
             componentsAPI.addSymbolOnBoardAtSlot(11, Symbol.X);
@@ -185,16 +184,16 @@ public class WinCheckerTest {
             e.printStackTrace();
         }
         //then
-        assertTrue(winChecker.checkWin(26, Symbol.X), whyItFailed);
+        assertTrue(assessmentAPI.checkForWinner(26, Symbol.X), whyItFailed);
     }
 
     @Test
     public void secondDiagonalNotFullShouldNotWin(){
         //given
-        String whyItFailed = "checkWin found not full second diagonal to be sufficient winning condition";
+        String whyItFailed = "checkForWinner found not full second diagonal to be sufficient winning condition";
         int boardSize = 3;
         componentsAPI = new ComponentsAPI(boardSize);
-        winChecker = new WinChecker(componentsAPI, boardSize);
+        assessmentAPI = new AssessmentAPI(componentsAPI, boardSize);
         //when
         try{
             componentsAPI.addSymbolOnBoardAtSlot(3, Symbol.X);
@@ -205,16 +204,16 @@ public class WinCheckerTest {
             e.printStackTrace();
         }
         //then
-        assertFalse(winChecker.checkWin(4, Symbol.X), whyItFailed);
+        assertFalse(assessmentAPI.checkForWinner(4, Symbol.X), whyItFailed);
     }
 
     @Test
     public void secondDiagonalFullShouldWin(){
         //given
-        String whyItFailed = "checkWin found full second diagonal not to be sufficient winning condition";
+        String whyItFailed = "checkForWinner found full second diagonal not to be sufficient winning condition";
         int boardSize = 3;
         componentsAPI = new ComponentsAPI(boardSize);
-        winChecker = new WinChecker(componentsAPI, boardSize);
+        assessmentAPI = new AssessmentAPI(componentsAPI, boardSize);
         //when
         try{
             componentsAPI.addSymbolOnBoardAtSlot(3, Symbol.O);
@@ -225,17 +224,17 @@ public class WinCheckerTest {
             e.printStackTrace();
         }
         //then
-        assertTrue(winChecker.checkWin(6, Symbol.O), whyItFailed);
+        assertTrue(assessmentAPI.checkForWinner(6, Symbol.O), whyItFailed);
     }
 
     @Test
     public void nonStandardSecondDiagonalSatisfyingWinningConditionShouldWin(){
         //given
-        String whyItFailed = "checkWin found sufficiently full second diagonal not to be sufficient winning condition";
+        String whyItFailed = "checkForWinner found sufficiently full second diagonal not to be sufficient winning condition";
         int boardSize = 9;
         componentsAPI = new ComponentsAPI(boardSize);
         int winningCondition = 4;
-        winChecker = new WinChecker(componentsAPI, winningCondition);
+        assessmentAPI = new AssessmentAPI(componentsAPI, winningCondition);
         //when
         try{
             componentsAPI.addSymbolOnBoardAtSlot(7, Symbol.O);
@@ -247,7 +246,7 @@ public class WinCheckerTest {
             e.printStackTrace();
         }
         //then
-        assertTrue(winChecker.checkWin(30, Symbol.O), whyItFailed);
+        assertTrue(assessmentAPI.checkForWinner(30, Symbol.O), whyItFailed);
     }
 
     @Test
@@ -257,7 +256,7 @@ public class WinCheckerTest {
         int boardSize = 3;
         componentsAPI = new ComponentsAPI(boardSize);
         int winningCondition = 3;
-        winChecker = new WinChecker(componentsAPI, winningCondition);
+        assessmentAPI = new AssessmentAPI(componentsAPI, winningCondition);
         //when
         for(int i = 1; i <= 7; i++) {
             try{
@@ -268,7 +267,7 @@ public class WinCheckerTest {
             }
         }
         //then
-        assertTrue(winChecker.checkWin(0, Symbol.O), whyItFailed);
+        assertTrue(assessmentAPI.checkForWinner(0, Symbol.O), whyItFailed);
     }
 
 }
