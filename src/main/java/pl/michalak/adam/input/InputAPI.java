@@ -1,4 +1,6 @@
 package pl.michalak.adam.input;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import pl.michalak.adam.output.OutputAPI;
 
 /**
@@ -17,6 +19,8 @@ public class InputAPI {
         this.intInputValidator = new IntInputValidator(outputAPI, inputReader, stringInputValidator);
     }
 
+    private static Logger logger = LogManager.getLogger("Input");
+
     /**
      * This method enables user to provide int value and checks it for validity.
      * @param message is a code of text stored in resource bundle.
@@ -25,7 +29,9 @@ public class InputAPI {
      * @return validated user input as an int.
     */
     public int getIntInputFromPlayer(String message, int min, int max){
-        return intInputValidator.getIntInputFromPlayer(message, min, max);
+        int userAnswer = intInputValidator.getIntInputFromPlayer(message, min, max);
+        logger.info(userAnswer);
+        return userAnswer;
     }
 
     /**
@@ -34,6 +40,8 @@ public class InputAPI {
      * @return user input as a string.
      */
     public String getStringInputFromPlayerWithNoStringsAttached(String message){
-        return stringInputProvider.getStringFromUser(message);
+        String userAnswer = stringInputProvider.getStringFromUser(message);
+        logger.info(userAnswer);
+        return userAnswer;
     }
 }

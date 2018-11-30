@@ -1,4 +1,5 @@
 package pl.michalak.adam.output;
+
 import pl.michalak.adam.components.ComponentsAPI;
 import pl.michalak.adam.users.PlayersAPI;
 import java.io.PrintStream;
@@ -29,7 +30,9 @@ public class OutputAPI {
      * This method uses consolePrinter wrapper to print a String message on the screen.
      * @param message is a String information that is printed on the screen.
     */
-    public void print(String message) { consolePrinter.print(message);}
+    public void print(String message) {
+        consolePrinter.print(message);
+    }
     
     public void reloadResourceBundleAfterLocaleChange(){
         consolePrinter.reloadResourceBundle();
@@ -37,6 +40,7 @@ public class OutputAPI {
 
     public void printFromResourceBundle(String message) {
         consolePrinter.printFromResourceBundle(message);
+
     }
 
     public void printFromResourceBundleAndAddNextLine(String message) {consolePrinter.printFromResourceBundleAndAddNextLine(message);}
