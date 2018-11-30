@@ -5,8 +5,6 @@ LOG_FILE3=test_9_5_diagonal.log
 touch $LOG_FILE1
 touch $LOG_FILE2
 touch $LOG_FILE3
-touch $LOG_FILE4
-touch $LOG_FILE5
 
 #LOG_FILE1
 (echo 2 1 gracz1 2 2 gracz2 1 5 1 3 2 7 y 1 2 3 4 5 9 6 7 8 y 1 5 7 4 3 6 n) | java -jar target/OX.java.academy-2.0.jar | tee ${LOG_FILE1}
