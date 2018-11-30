@@ -32,10 +32,7 @@ class BoardPrinter {
                     out.append(" " + (slot+1) + " ");
             }
             else {
-                if(componentsAPI.getNumberOfSlotsOnBoard() > 9 && slot < 9)
-                    out.append("  ").append(componentsAPI.getSymbolFromSlot(slot)).append(" ");
-                else
-                    out.append(" ").append(componentsAPI.getSymbolFromSlot(slot)).append(" ");
+                out.append("  ").append(componentsAPI.getSymbolFromSlot(slot)).append(" ");
             }
             if(slot % componentsAPI.getBoardSideSize() != componentsAPI.getBoardSideSize()-1)
                 out.append("|");

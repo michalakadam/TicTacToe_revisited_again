@@ -23,12 +23,7 @@ public class ProgramFlowAPI {
     public void start() {
         Intro introduction = new Intro(outputAPI, propertiesAPI, inputAPI, playersAPI);
         introduction.beforeGame();
-        playGame();
-    }
-
-    private void playGame(){
         GameFlow gameFlow = new GameFlow(outputAPI, propertiesAPI, inputAPI, playersAPI);
         gameFlow.beginGame();
     }
-
 }

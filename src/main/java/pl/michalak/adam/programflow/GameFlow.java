@@ -21,19 +21,23 @@ class GameFlow {
     }
 
     void beginGame(){
-        this.game = new Game();
         outputAPI.setScoreBoardPrinter(playersAPI);
-        boolean doYouWantToPlayAnotherRound = true;
-        while(game.getRoundNumber() < 3 && doYouWantToPlayAnotherRound) {
-            game.beginNewRound();
-            playRound();
-            givePlayersPoints();
-            printScoreBoard();
-            if(game.getRoundNumber() != 3)
-                doYouWantToPlayAnotherRound = askPlayerAboutAnotherRound();
+        boolean doYouWantToPlayAnotherGame = true;
+        while(doYouWantToPlayAnotherGame) {
+            this.game = new Game();
+            boolean doYouWantToPlayAnotherRound = true;
+            while (game.getRoundNumber() < 3 && doYouWantToPlayAnotherRound) {
+                game.beginNewRound();
+                playRound();
+                givePlayersPoints();
+                printScoreBoard();
+                if (game.getRoundNumber() != 3)
+                    doYouWantToPlayAnotherRound = askPlayerAboutAnotherRound();
+            }
+            sumUpGame();
+            doYouWantToPlayAnotherGame = askForAnotherGame();
         }
-        sumUpGame();
-
+        outputAPI.printFromResourceBundleAndAddNextLine("finishGame");
     }
 
     private void playRound(){
@@ -65,6 +69,10 @@ class GameFlow {
     }
 
     boolean askPlayerAboutAnotherRound(){
-        return inputAPI.getIntInputFromPlayer("playMore", 1, 2) == 1;
+        return inputAPI.getIntInputFromPlayer("anotherRound", 1, 2) == 1;
+    }
+
+    private boolean askForAnotherGame(){
+        return inputAPI.getIntInputFromPlayer("anotherGame", 1 ,2) == 1;
     }
 }
