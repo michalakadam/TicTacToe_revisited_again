@@ -4,6 +4,7 @@ import pl.michalak.adam.programflow.ProgramFlowAPI;
 
 /**
  * Main class of the program.
+ * Here execution of the code starts.
  *
  * @author Adam Michalak
  */

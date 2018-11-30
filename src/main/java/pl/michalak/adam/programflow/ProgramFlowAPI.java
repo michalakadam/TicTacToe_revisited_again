@@ -7,7 +7,12 @@ import pl.michalak.adam.users.PlayersAPI;
 
 import java.io.PrintStream;
 
-
+/**
+ * This is the class that controls the flow of the program.
+ * It wraps two big parts of it: game and intro.
+ *
+ * @author Adam Michalak
+*/
 public class ProgramFlowAPI {
     private final PropertiesAPI propertiesAPI;
     private final OutputAPI outputAPI;
@@ -20,6 +25,14 @@ public class ProgramFlowAPI {
         this.inputAPI = new InputAPI(outputAPI);
         this.playersAPI = new PlayersAPI();
     }
+
+
+    /**
+     * This method initializes Intro object with required APIs.
+     * Intro object enables user to see and use the menu.
+     * Then GameFlow object is initialized with the same parameters.
+     * This object is responsible for game UI.
+    */
     public void start() {
         Intro introduction = new Intro(outputAPI, propertiesAPI, inputAPI, playersAPI);
         introduction.beforeGame();
