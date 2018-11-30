@@ -69,10 +69,12 @@ class GameFlow {
     }
 
     private boolean askPlayerAboutAnotherRound(){
-        return inputAPI.getIntInputFromPlayer("anotherRound", 1, 2) == 1;
+        String userAnswer = inputAPI.getStringInputFromPlayer("anotherRound", "Y", "N");
+        return userAnswer.equals("Y") || userAnswer.equals("y");
     }
 
     private boolean askForAnotherGame(){
-        return inputAPI.getIntInputFromPlayer("anotherGame", 1 ,2) == 1;
+        String userAnswer = inputAPI.getStringInputFromPlayer("anotherGame", "Y", "N");
+        return userAnswer.equals("Y") || userAnswer.equals("y");
     }
 }

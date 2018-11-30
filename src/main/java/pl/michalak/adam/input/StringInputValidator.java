@@ -18,7 +18,7 @@ class StringInputValidator {
     }
 
     String getStringInputFromPlayer(String message, String option1, String option2){
-        outputAPI.printFromResourceBundle(message);
+        outputAPI.printFromResourceBundleWithFormatting(message, option1, option2);
         String answer = inputReader.getString();
         if(checkStringInput(option1, answer) || checkStringInput(option2, answer))
             return answer;

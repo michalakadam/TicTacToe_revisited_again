@@ -19,6 +19,7 @@ public class InputAPI {
         this.intInputValidator = new IntInputValidator(outputAPI, inputReader, stringInputValidator);
     }
 
+
     private static final Logger logger = LogManager.getLogger("Input");
 
     /**
@@ -41,6 +42,19 @@ public class InputAPI {
      */
     public String getStringInputFromPlayerWithNoStringsAttached(String message){
         String userAnswer = stringInputProvider.getStringFromUser(message);
+        logger.info(userAnswer);
+        return userAnswer;
+    }
+
+    /**
+     * This method validates user answer and than returns correct one.
+     * @param message is a code of text stored in resource bundle.
+     * @param option1 is first correct input option.
+     * @param option2 is second correct input option.
+     * @return user input as a string.
+     */
+    public String getStringInputFromPlayer(String message, String option1, String option2){
+        String userAnswer = stringInputValidator.getStringInputFromPlayer(message, option1, option2);
         logger.info(userAnswer);
         return userAnswer;
     }
