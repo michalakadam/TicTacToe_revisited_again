@@ -8,7 +8,7 @@ import pl.michalak.adam.exceptions.PlayersNamesAreTheSameException;
 import static org.testng.Assert.*;
 
 public class PlayersAPITest {
-    PlayersAPI playersAPI;
+    private PlayersAPI playersAPI;
 
     @BeforeMethod
     public void setUp(){
@@ -61,7 +61,7 @@ public class PlayersAPITest {
         playersAPI.addPointsToPlayersScore(1, 1);
 
         //then
-        assertEquals(playersAPI.getPlayersScore(1), 1);
+        assertEquals(playersAPI.getPlayersScore(1), 1, whyItFailed);
     }
 
     @Test

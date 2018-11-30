@@ -68,7 +68,7 @@ class GameFlow {
         }
     }
 
-    boolean askPlayerAboutAnotherRound(){
+    private boolean askPlayerAboutAnotherRound(){
         return inputAPI.getIntInputFromPlayer("anotherRound", 1, 2) == 1;
     }
 

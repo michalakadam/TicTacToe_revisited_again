@@ -27,14 +27,14 @@ class ScoreBoardPrinter {
 
     }
 
-    boolean isItADraw(){
+    private boolean isItADraw(){
         return playersAPI.getPlayersScore(1) == playersAPI.getPlayersScore(2);
     }
-    int determineFirstPlayer(){
+    private int determineFirstPlayer(){
         return playersAPI.getPlayersScore(1) > playersAPI.getPlayersScore(2) ? 1 : 2;
     }
 
-    int determineSecondPlayer(){
+    private int determineSecondPlayer(){
         return playersAPI.getPlayersScore(1) < playersAPI.getPlayersScore(2) ? 1 : 2;
     }
 }

@@ -8,7 +8,7 @@ import pl.michalak.adam.components.Symbol;
  * @author Adam Michalak
 */
 public class AssessmentAPI {
-    WinChecker winChecker;
+    private final WinChecker winChecker;
 
     public AssessmentAPI(ComponentsAPI componentsAPI, int winningCondition){
         this.winChecker = new WinChecker(componentsAPI, winningCondition);
