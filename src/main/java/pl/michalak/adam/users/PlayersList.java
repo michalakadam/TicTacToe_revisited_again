@@ -14,7 +14,7 @@ class PlayersList {
         players.add(new Player(playerTwoDefaultName, Symbol.O));
     }
 
-    public void setPlayerName(int playerNumber, String playerName) throws PlayersNamesAreTheSameException {
+    void setPlayerName(int playerNumber, String playerName) throws PlayersNamesAreTheSameException {
         if(playerNumber == 2 && players.get(0).getPlayerName().equals(playerName))
             throw new PlayersNamesAreTheSameException("players' names are exactly the same");
         else if(playerNumber == 1 && players.get(1).getPlayerName().equals(playerName))
@@ -23,12 +23,20 @@ class PlayersList {
             players.get(playerNumber-1).setPlayerName(playerName);
     }
 
-    public String getPlayerName(int playerNumber) {
+    String getPlayerName(int playerNumber) {
         return players.get(playerNumber-1).getPlayerName();
     }
 
-    public Symbol getPlayerSymbol(int playerNumber) {
+    Symbol getPlayerSymbol(int playerNumber) {
         return players.get(playerNumber-1).getPlayerSymbol();
+    }
+
+    void addPointsToPlayersScore(int pointsAdded, int playerNumber) {
+        players.get(playerNumber-1).addPointsToScore(pointsAdded);
+    }
+
+    int getPlayerScore(int playerNumber){
+        return players.get(playerNumber-1).getPlayersScore();
     }
 }
 

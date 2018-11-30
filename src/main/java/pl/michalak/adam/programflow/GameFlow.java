@@ -11,6 +11,7 @@ class GameFlow {
     private final InputAPI inputAPI;
     private final PlayersAPI playersAPI;
     private Game game;
+    private RoundFlow roundFlow;
 
     GameFlow(OutputAPI outputAPI, PropertiesAPI propertiesAPI, InputAPI inputAPI, PlayersAPI playersAPI) {
         this.propertiesAPI = propertiesAPI;
@@ -21,15 +22,49 @@ class GameFlow {
 
     void beginGame(){
         this.game = new Game();
-        while(game.getRoundNumber() <= 3)
+        outputAPI.setScoreBoardPrinter(playersAPI);
+        boolean doYouWantToPlayAnotherRound = true;
+        while(game.getRoundNumber() < 3 && doYouWantToPlayAnotherRound) {
             game.beginNewRound();
             playRound();
+            givePlayersPoints();
+            printScoreBoard();
+            if(game.getRoundNumber() != 3)
+                doYouWantToPlayAnotherRound = askPlayerAboutAnotherRound();
+        }
+        sumUpGame();
 
     }
 
     private void playRound(){
-        RoundFlow roundFlow = new RoundFlow(propertiesAPI, outputAPI, inputAPI, playersAPI);
+        this.roundFlow = new RoundFlow(propertiesAPI, outputAPI, inputAPI, playersAPI);
         roundFlow.beginRound();
     }
 
+    private void givePlayersPoints(){
+        if(roundFlow.wasItADraw()){
+            playersAPI.addPointsToPlayersScore(1, 1);
+            playersAPI.addPointsToPlayersScore(1, 2);
+        }
+        else
+            playersAPI.addPointsToPlayersScore(3, roundFlow.determineTheWinner());
+    }
+
+    private void printScoreBoard() {
+        outputAPI.printFromResourceBundleAndAddNextLine("scoreBoardHeader");
+        outputAPI.printScoreBoard();
+    }
+
+    private void sumUpGame() {
+        if(roundFlow.wasItADraw())
+            outputAPI.printFromResourceBundleAndAddNextLine("drawAnnouncement");
+        else {
+            outputAPI.print(playersAPI.getPlayerName(roundFlow.determineTheWinner())+" ");
+            outputAPI.printFromResourceBundleAndAddNextLine("theWinnerIs");
+        }
+    }
+
+    boolean askPlayerAboutAnotherRound(){
+        return inputAPI.getIntInputFromPlayer("playMore", 1, 2) == 1;
+    }
 }

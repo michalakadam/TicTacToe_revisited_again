@@ -21,4 +21,12 @@ public class PlayersAPI {
     public Symbol getPlayerSymbol(int playerNumber) {
         return playersList.getPlayerSymbol(playerNumber);
     }
+
+    public void addPointsToPlayersScore(int pointsAdded, int playerNumber) {
+        playersList.addPointsToPlayersScore(pointsAdded, playerNumber);
+    }
+
+    public int getPlayersScore(int playerNumber){
+        return playersList.getPlayerScore(playerNumber);
+    }
 }

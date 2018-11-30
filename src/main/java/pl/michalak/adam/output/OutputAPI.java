@@ -1,6 +1,7 @@
 package pl.michalak.adam.output;
 
 import pl.michalak.adam.components.ComponentsAPI;
+import pl.michalak.adam.users.PlayersAPI;
 
 import java.io.PrintStream;
 
@@ -9,6 +10,7 @@ public class OutputAPI {
     private final MenuPrinter menuPrinter;
     private final ErrorPrinter errorPrinter;
     private BoardPrinter boardPrinter;
+    private ScoreBoardPrinter scoreBoardPrinter;
 
     public OutputAPI(PrintStream printStream){
         this.consolePrinter = new ConsolePrinter(printStream);
@@ -50,4 +52,11 @@ public class OutputAPI {
     public void setBoardPrinter(ComponentsAPI componentsAPI) { this.boardPrinter = new BoardPrinter(componentsAPI);}
 
     public void printBoard() { consolePrinter.print(boardPrinter.boardToString()); }
+
+    public void setScoreBoardPrinter(PlayersAPI playersAPI){
+        this.scoreBoardPrinter = new ScoreBoardPrinter(playersAPI);
+    }
+    public void printScoreBoard() {
+        consolePrinter.print(scoreBoardPrinter.printScoreBoard());
+    }
 }

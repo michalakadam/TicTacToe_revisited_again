@@ -67,11 +67,11 @@ class RoundFlow {
         return inputAPI.getIntInputFromPlayer("playerMoves", 1, componentsAPI.getNumberOfSlotsOnBoard());
     }
 
-    private boolean wasItADraw(){
+    boolean wasItADraw(){
         return round.getTurnNumber() == componentsAPI.getNumberOfSlotsOnBoard();
     }
 
-    private int determineTheWinner(){
+    int determineTheWinner(){
         return getPlayersNumberInThisTurn();
     }
 }

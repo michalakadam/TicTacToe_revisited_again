@@ -18,8 +18,11 @@ public class InputAPI {
         return intInputValidator.getIntInputFromPlayer(message, min, max);
     }
 
+    public String getStringInputFromPlayer(String message, String option1, String option2){
+        return stringInputValidator.getStringInputFromPlayer(message, option1, option2);
+    }
+
     public String getStringInputFromPlayerWithNoStringsAttached(String message){
         return stringInputProvider.getStringFromUser(message);
     }
-
 }

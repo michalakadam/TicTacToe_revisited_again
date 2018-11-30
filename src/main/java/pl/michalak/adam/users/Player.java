@@ -17,11 +17,19 @@ class Player {
         this.name = name;
     }
 
-    public String getPlayerName() {
+    String getPlayerName() {
         return this.name;
     }
 
-    public Symbol getPlayerSymbol() {
+    Symbol getPlayerSymbol() {
         return this.symbol;
+    }
+
+    void addPointsToScore(int pointsAdded) {
+        this.score += pointsAdded;
+    }
+
+    int getPlayersScore(){
+        return this.score;
     }
 }
