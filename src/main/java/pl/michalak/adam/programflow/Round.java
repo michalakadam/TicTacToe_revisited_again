@@ -7,7 +7,7 @@ import pl.michalak.adam.settings.PropertiesAPI;
 
 class Round {
     private int turnNumber;
-    private int winningCondition;
+    private final int winningCondition;
     private final int MAXNUMBEROFTURNS;
     private final AssessmentAPI assessmentAPI;
 

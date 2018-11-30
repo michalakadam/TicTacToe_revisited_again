@@ -64,7 +64,7 @@ public class PropertiesAPITest {
         //when
         propertiesAPI.setLocale("en", "US");
         //then
-        assertEquals(Locale.getDefault().getLanguage(), "en");
+        assertEquals(Locale.getDefault().getLanguage(), "en", whyItFailed);
     }
 
     @Test
@@ -74,6 +74,6 @@ public class PropertiesAPITest {
         //when
         propertiesAPI.setLocale("pl", "PL");
         //then
-        assertEquals(Locale.getDefault().getLanguage(), "pl");
+        assertEquals(Locale.getDefault().getLanguage(), "pl", whyItFailed);
     }
 }

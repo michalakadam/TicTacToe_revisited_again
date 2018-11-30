@@ -5,7 +5,7 @@ import pl.michalak.adam.components.Symbol;
 class Player {
     private String name;
     private int score;
-    private Symbol symbol;
+    private final Symbol symbol;
 
     Player(String name, Symbol symbol){
         this.name = name;

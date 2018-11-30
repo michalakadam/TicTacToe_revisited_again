@@ -13,7 +13,7 @@ class RoundFlow {
     private final OutputAPI outputAPI;
     private final InputAPI inputAPI;
     private final PlayersAPI playersAPI;
-    private ComponentsAPI componentsAPI;
+    private final ComponentsAPI componentsAPI;
     private Round round;
 
     RoundFlow(PropertiesAPI propertiesAPI, OutputAPI outputAPI, InputAPI inputAPI, PlayersAPI playersAPI) {

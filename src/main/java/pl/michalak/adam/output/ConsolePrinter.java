@@ -16,7 +16,7 @@ class ConsolePrinter {
         this.languageBundle = ResourceBundle.getBundle("Language");
     }
 
-    private static Logger logger = LogManager.getLogger("Output");
+    private static final Logger logger = LogManager.getLogger("Output");
 
     void print(String message) {
         printStream.print(message);

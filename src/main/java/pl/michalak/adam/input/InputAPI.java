@@ -19,7 +19,7 @@ public class InputAPI {
         this.intInputValidator = new IntInputValidator(outputAPI, inputReader, stringInputValidator);
     }
 
-    private static Logger logger = LogManager.getLogger("Input");
+    private static final Logger logger = LogManager.getLogger("Input");
 
     /**
      * This method enables user to provide int value and checks it for validity.

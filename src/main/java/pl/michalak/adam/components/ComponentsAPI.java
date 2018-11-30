@@ -1,6 +1,5 @@
 package pl.michalak.adam.components;
 import pl.michalak.adam.exceptions.SlotIsFilledException;
-import java.util.List;
 
 /**
  * ComponentsAPI is responsible for handling tic tac toe

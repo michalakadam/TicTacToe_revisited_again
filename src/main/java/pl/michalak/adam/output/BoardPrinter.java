@@ -4,7 +4,7 @@ import pl.michalak.adam.components.ComponentsAPI;
 import pl.michalak.adam.components.Symbol;
 
 class BoardPrinter {
-    ComponentsAPI componentsAPI;
+    private final ComponentsAPI componentsAPI;
 
     BoardPrinter(ComponentsAPI componentsAPI){
         this.componentsAPI = componentsAPI;
