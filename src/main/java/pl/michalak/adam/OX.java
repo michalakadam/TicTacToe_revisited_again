@@ -1,6 +1,6 @@
 package pl.michalak.adam;
 
-import pl.michalak.adam.gameflow.GameFlowAPI;
+import pl.michalak.adam.programflow.ProgramFlowAPI;
 
 /**
  * Main class of the program.
@@ -9,7 +9,7 @@ import pl.michalak.adam.gameflow.GameFlowAPI;
  */
 class OX {
 public static void main(String[] args) {
-        GameFlowAPI gameFlowAPI = new GameFlowAPI();
-        gameFlowAPI.start();
+        ProgramFlowAPI programFlowAPI = new ProgramFlowAPI();
+        programFlowAPI.start();
     }
 }

@@ -1,5 +1,5 @@
 # OX
 #
-# Object-oriented OX game developed in TDD
+# Object-oriented OX gameFlow developed in TDD
 |Data  |Pesymistyczna|Realistyczna|Optymistyczna|
 :-------------------:|:-------------------:|:-------------------|-------------------:

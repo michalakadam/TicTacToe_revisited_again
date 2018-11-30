@@ -1,5 +1,6 @@
 package pl.michalak.adam.users;
 
+import pl.michalak.adam.components.Symbol;
 import pl.michalak.adam.exceptions.PlayersNamesAreTheSameException;
 
 import java.util.ArrayList;
@@ -9,8 +10,8 @@ class PlayersList {
     private final List<Player> players;
     PlayersList(String playerOneDefaultName, String playerTwoDefaultName) {
         this.players = new ArrayList<>();
-        players.add(new Player(playerOneDefaultName));
-        players.add(new Player(playerTwoDefaultName));
+        players.add(new Player(playerOneDefaultName, Symbol.X));
+        players.add(new Player(playerTwoDefaultName, Symbol.O));
     }
 
     public void setPlayerName(int playerNumber, String playerName) throws PlayersNamesAreTheSameException {
@@ -24,6 +25,10 @@ class PlayersList {
 
     public String getPlayerName(int playerNumber) {
         return players.get(playerNumber-1).getPlayerName();
+    }
+
+    public Symbol getPlayerSymbol(int playerNumber) {
+        return players.get(playerNumber-1).getPlayerSymbol();
     }
 }
 

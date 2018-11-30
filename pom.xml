@@ -8,7 +8,7 @@
     <artifactId>OX.java.academy</artifactId>
     <version>0.1</version>
     <name>OX</name>
-    <description>Object-oriented OX game developed in TDD</description>
+    <description>Object-oriented OX gameFlow developed in TDD</description>
     <url>git.epam.com/Adam_Michalak</url>
   
     <properties>

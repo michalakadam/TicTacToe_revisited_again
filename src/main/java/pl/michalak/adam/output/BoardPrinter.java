@@ -12,7 +12,7 @@ class BoardPrinter {
 
     String boardToString() {
         StringBuilder out = new StringBuilder();
-        out.append("\n");
+        out.append("\n\n");
         for (int slot = 0; slot < componentsAPI.getNumberOfSlotsOnBoard(); slot++) {
             //go to new row
             if (slot > 0 && slot % componentsAPI.getBoardSideSize() == 0) {
@@ -31,12 +31,16 @@ class BoardPrinter {
                 else
                     out.append(" " + (slot+1) + " ");
             }
-            else
-                out.append(" ").append(componentsAPI.getSymbolFromSlot(slot)).append(" ");
+            else {
+                if(componentsAPI.getNumberOfSlotsOnBoard() > 9 && slot < 9)
+                    out.append("  ").append(componentsAPI.getSymbolFromSlot(slot)).append(" ");
+                else
+                    out.append(" ").append(componentsAPI.getSymbolFromSlot(slot)).append(" ");
+            }
             if(slot % componentsAPI.getBoardSideSize() != componentsAPI.getBoardSideSize()-1)
                 out.append("|");
         }
-        out.append("\n");
+        out.append("\n\n");
         return out.toString();
     }
 }

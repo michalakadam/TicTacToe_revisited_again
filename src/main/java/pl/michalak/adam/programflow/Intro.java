@@ -1,4 +1,4 @@
-package pl.michalak.adam.gameflow;
+package pl.michalak.adam.programflow;
 
 import pl.michalak.adam.exceptions.PlayersNamesAreTheSameException;
 import pl.michalak.adam.input.InputAPI;

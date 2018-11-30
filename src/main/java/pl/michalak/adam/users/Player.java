@@ -1,12 +1,16 @@
 package pl.michalak.adam.users;
 
+import pl.michalak.adam.components.Symbol;
+
 class Player {
     private String name;
     private int score;
+    private Symbol symbol;
 
-    Player(String name){
+    Player(String name, Symbol symbol){
         this.name = name;
         this.score = 0;
+        this.symbol = symbol;
     }
 
     void setPlayerName(String name){
@@ -15,5 +19,9 @@ class Player {
 
     public String getPlayerName() {
         return this.name;
+    }
+
+    public Symbol getPlayerSymbol() {
+        return this.symbol;
     }
 }

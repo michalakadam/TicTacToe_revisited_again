@@ -1,5 +1,6 @@
 package pl.michalak.adam.users;
 
+import pl.michalak.adam.components.Symbol;
 import pl.michalak.adam.exceptions.PlayersNamesAreTheSameException;
 
 public class PlayersAPI {
@@ -15,5 +16,9 @@ public class PlayersAPI {
 
     public String getPlayerName(int playerNumber){
         return playersList.getPlayerName(playerNumber);
+    }
+
+    public Symbol getPlayerSymbol(int playerNumber) {
+        return playersList.getPlayerSymbol(playerNumber);
     }
 }
