@@ -22,9 +22,8 @@
       <!-- see source for the plugins to verify if those can be skipped, they should IIRC -->
         <maven.compiler.encoding>${project.build.sourceEncoding}</maven.compiler.encoding>
         <maven.resources.encoding>${project.build.sourceEncoding}</maven.resources.encoding>
-        <version.maven>3.5.2</version.maven>
+        <version.maven>3.5.3</version.maven>
       <!-- plugin versions should go here, so below they can be omitted -->
-        <version.plugin.maven.enforcer>3.0.0-M2</version.plugin.maven.enforcer>
         <version.plugin.maven.jar>3.1.0</version.plugin.maven.jar>
         <version.plugin.maven.compiler>3.8.0</version.plugin.maven.compiler>
         <version.plugin.maven.resources>3.1.0</version.plugin.maven.resources>
@@ -48,27 +47,6 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>${version.plugin.maven.enforcer}</version>
-                <executions>
-                    <execution>
-                        <id>enforce-maven</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <configuration>
-                            <rules>
-                                <requireMavenVersion>
-                                <!-- helps with plugin versions, so you are more up-to-date -->
-                                    <version>${version.maven}</version>
-                                </requireMavenVersion>
-                            </rules>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
             <!-- required for logger -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
