@@ -6,6 +6,7 @@ import pl.michalak.adam.output.OutputAPI;
 /**
  * This object handles everything that is related to user input.
  *
+ * @apiNote Public entry to package {@link pl.michalak.adam.input}.
 */
 public class InputAPI {
     private final IntInputValidator intInputValidator;
@@ -36,9 +37,9 @@ public class InputAPI {
     }
 
     /**
-     * This method enables user to provide string answer for an inquiry.
-     * @param message is a code of text stored in resource bundle.
-     * @return user input as a string.
+     * This method enables user to provide String answer for an inquiry.
+     * @param message is a code of a text stored in a resource bundle.
+     * @return user input as a String.
      */
     public String getStringInputFromPlayerWithNoStringsAttached(String message){
         String userAnswer = stringInputProvider.getStringFromUser(message);
@@ -51,7 +52,7 @@ public class InputAPI {
      * @param message is a code of text stored in resource bundle.
      * @param option1 is first correct input option.
      * @param option2 is second correct input option.
-     * @return user input as a string.
+     * @return user input as a String.
      */
     public String getStringInputFromPlayer(String message, String option1, String option2){
         String userAnswer = stringInputValidator.getStringInputFromPlayer(message, option1, option2);

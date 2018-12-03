@@ -3,7 +3,9 @@ package pl.michalak.adam.components;
 import pl.michalak.adam.exceptions.SlotIsFilledException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 
 class Board {
     private final List<Symbol> piecesOnBoard;
@@ -11,6 +13,8 @@ class Board {
     Board(int boardSize){
         this.piecesOnBoard = new ArrayList<>();
         //boardSize is length of board in one dimension
+// TODO: czy strumień?
+//        IntStream.rangeClosed(0, boardSize*boardSize).forEach(i -> piecesOnBoard.add(Symbol.EMPTY));
         for(int i = 0; i < boardSize*boardSize; i++){
             piecesOnBoard.add(Symbol.EMPTY);
         }

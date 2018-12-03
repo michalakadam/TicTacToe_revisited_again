@@ -11,6 +11,7 @@ public class ComponentsAPI {
     private final Board board;
     private int lastMove;
 
+
     public ComponentsAPI(int boardSize){
         this.board = new Board(boardSize);
         this.lastMove = 0;
@@ -18,15 +19,24 @@ public class ComponentsAPI {
 
 
     /**
+     * Saves the move as lastMove (updates pointer).
+     * @apiNote allows {@link pl.michalak.adam.assessment.AssessmentAPI} to work more effectively - checks only wins that could result from last move
+     * @param index where to put piece
+     * @param symbol what to put
+     * @throws SlotIsFilledException if index points to already taken field
+     */
+
+    /**
      * This method adds tic tac toe piece on a specified slot.
      * The exception is thrown where the slot specified by index is already occuppied.
      * Additionally this move is saved as this class' field.
      * It allows AssessmentAPI to work more effectively as it checks only
      * columns, rows and diagonals that consist of the slot that was occupied in last move.
+     *
      * @throws SlotIsFilledException when the slot specified by index is already occupied.
      * @param index is location of the slot.
      * @param symbol is a player's specific piece that is going to be placed on the board
-    */
+     */
     public void addSymbolOnBoardAtSlot(int index, Symbol symbol) throws SlotIsFilledException {
         board.addSymbolAtSlot(index-1, symbol);
         saveLastMove(index-1);

@@ -6,6 +6,8 @@ import pl.michalak.adam.output.OutputAPI;
 import pl.michalak.adam.settings.PropertiesAPI;
 import pl.michalak.adam.users.PlayersAPI;
 
+import java.util.Arrays;
+
 class Intro {
     private final OutputAPI outputAPI;
     private final PropertiesAPI propertiesAPI;
