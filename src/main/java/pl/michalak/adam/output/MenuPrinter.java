@@ -18,14 +18,14 @@ class MenuPrinter {
         consolePrinter.print("\n");
     }
 
-    public void printLanguageMenu() {
+    void printLanguageMenu() {
         consolePrinter.print("\n");
         consolePrinter.printFromResourceBundleAndAddNextLine("languageMenuTitleAndLanguages");
         consolePrinter.printFromResourceBundleAndAddNextLine("goBackToMainMenu");
         consolePrinter.print("\n");
     }
 
-    public void printGameSettingsMenu() {
+    void printGameSettingsMenu() {
         consolePrinter.print("\n");
         consolePrinter.printFromResourceBundleAndAddNextLine("settingsMenuTitle");
         consolePrinter.printFromResourceBundleAndAddNextLine("boardSizeSet");
@@ -34,7 +34,7 @@ class MenuPrinter {
         consolePrinter.print("\n");
     }
 
-    public void printPlayersNamesMenu() {
+    void printPlayersNamesMenu() {
         consolePrinter.print("\n");
         consolePrinter.printFromResourceBundleAndAddNextLine("playersNamesMenuTitle");
         consolePrinter.printFromResourceBundleAndAddNextLine("playerOneName");

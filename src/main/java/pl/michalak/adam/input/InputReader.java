@@ -7,7 +7,7 @@ class InputReader {
 
     private final Scanner keyboard;
 
-    public InputReader(InputStream inputStream){
+    InputReader(InputStream inputStream){
         this.keyboard = new Scanner(inputStream);
     }
     int getInt(){ return keyboard.nextInt(); }

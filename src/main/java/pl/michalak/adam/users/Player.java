@@ -33,7 +33,7 @@ class Player {
         return this.score;
     }
 
-    public void resetPoints() {
+    void resetPoints() {
         this.score = 0;
     }
 }

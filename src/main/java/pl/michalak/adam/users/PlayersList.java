@@ -39,7 +39,7 @@ class PlayersList {
         return players.get(playerNumber-1).getPlayersScore();
     }
 
-    public void resetPlayersPoints() {
+    void resetPlayersPoints() {
         players.get(0).resetPoints();
         players.get(1).resetPoints();
     }

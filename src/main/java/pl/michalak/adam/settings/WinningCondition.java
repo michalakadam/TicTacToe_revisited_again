@@ -11,7 +11,7 @@ class WinningCondition {
         return this.winningCondition;
     }
 
-    public void setWinningCondition(int winningConditionValue) {
+    void setWinningCondition(int winningConditionValue) {
         this.winningCondition = winningConditionValue;
     }
 }
