@@ -22,7 +22,7 @@
       <!-- see source for the plugins to verify if those can be skipped, they should IIRC -->
         <maven.compiler.encoding>${project.build.sourceEncoding}</maven.compiler.encoding>
         <maven.resources.encoding>${project.build.sourceEncoding}</maven.resources.encoding>
-        <version.maven>3.5.3</version.maven>
+        <version.maven>3.5.2</version.maven>
       <!-- plugin versions should go here, so below they can be omitted -->
         <version.plugin.maven.enforcer>3.0.0-M2</version.plugin.maven.enforcer>
         <version.plugin.maven.jar>3.1.0</version.plugin.maven.jar>
@@ -69,25 +69,27 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- required for logger -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
                 <execution>
-<id>copy-dependencies</id>
-<phase>prepare-package</phase>
-<goals>
-<goal>copy-dependencies</goal>
-</goals>
-<configuration>
-<outputDirectory>${project.build.directory}/lib</outputDirectory>
-<overWriteReleases>false</overWriteReleases>
-<overWriteSnapshots>false</overWriteSnapshots>
-<overWriteIfNewer>true</overWriteIfNewer>
-</configuration>
-</execution>
-</executions>
-</plugin> 
+                <id>copy-dependencies</id>
+                <phase>prepare-package</phase>
+                <goals>
+                <goal>copy-dependencies</goal>
+                </goals>
+                <configuration>
+                <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                <overWriteReleases>false</overWriteReleases>
+                <overWriteSnapshots>false</overWriteSnapshots>
+                <overWriteIfNewer>true</overWriteIfNewer>
+                </configuration>
+                </execution>
+                </executions>
+            </plugin> 
+            <!-- -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -98,8 +100,10 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <mainClass>pl.michalak.adam.OX</mainClass>
+                            <!-- required for logger -->
                             <addClasspath>true</addClasspath>
-                            <classpathPrefix>lib/</classpathPrefix> 
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <!-- --> 
                         </manifest>
                         <manifestEntries>
                             <mode>development</mode>
