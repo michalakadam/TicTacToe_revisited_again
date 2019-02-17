@@ -12,11 +12,12 @@
     <url>git.epam.com/Adam_Michalak</url>
   
     <properties>
+        <project.basedir>~/IdeaProjects/OX</project.basedir>
              <!-- https://maven.apache.org/general.html#encoding-warning -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
              <!-- https://maven.apache.org/general.html#special-characters-site -->
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <project.java.version>1.11</project.java.version>
+        <project.java.version>11</project.java.version>
         <maven.compiler.source>${project.java.version}</maven.compiler.source>
         <maven.compiler.target>${project.java.version}</maven.compiler.target>
       <!-- see source for the plugins to verify if those can be skipped, they should IIRC -->
@@ -28,9 +29,16 @@
         <version.plugin.maven.compiler>3.8.0</version.plugin.maven.compiler>
         <version.plugin.maven.resources>3.1.0</version.plugin.maven.resources>
         <version.testng>RELEASE</version.testng>
+        <version.core.log4j>2.8.2</version.core.log4j>
     </properties>
-
     <dependencies>
+        <dependency>
+            <groupId>pl.michalak.adam</groupId>
+            <artifactId>DebtAnnotation.java.academy</artifactId>
+            <version>0.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/DebtAnnotation.java.academy-0.1.jar</systemPath>
+        </dependency>
         <!-- #Your dependencies -->
         <dependency>
             <groupId>org.testng</groupId>
@@ -41,10 +49,30 @@
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
-            <version>2.8.2</version>
+            <version>${version.core.log4j}</version>
         </dependency>
     </dependencies>
-
+    <!-- required for mvn site -->
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.0.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.3</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
+        </plugins>
+    </reporting>
+    <!-- -->
     <build>
         <plugins>
             <!-- required for logger -->
@@ -52,19 +80,19 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
-                <execution>
-                <id>copy-dependencies</id>
-                <phase>prepare-package</phase>
-                <goals>
-                <goal>copy-dependencies</goal>
-                </goals>
-                <configuration>
-                <outputDirectory>${project.build.directory}/lib</outputDirectory>
-                <overWriteReleases>false</overWriteReleases>
-                <overWriteSnapshots>false</overWriteSnapshots>
-                <overWriteIfNewer>true</overWriteIfNewer>
-                </configuration>
-                </execution>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>false</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin> 
             <!-- -->
@@ -90,13 +118,13 @@
                         </manifestEntries>
                     </archive>
                 </configuration>
-            </plugin>                 
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${version.plugin.maven.compiler}</version>
                 <configuration>
-                    <release>11</release>
+                    <release>${project.java.version}</release>
                 </configuration>
             </plugin>
             <plugin>

@@ -1,6 +1,6 @@
 # OX
 
-##### Object-oriented OX gameFlow developed in TDD
+##### Object-oriented Tic-tac-toe developed in TDD
 
 ### How to open this project
 ##### Requirements  
